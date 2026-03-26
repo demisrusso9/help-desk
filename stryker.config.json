@@ -1,0 +1,40 @@
+{
+  "$schema": "./node_modules/@stryker-mutator/core/schema/stryker-schema.json",
+  "packageManager": "npm",
+  "reporters": [
+    "html",
+    "clear-text",
+    "progress"
+  ],
+  "htmlReporter": {
+    "fileName": "reports/mutation.html"
+  },
+  "mutate": [
+    "src/app/modules/**/*.ts"
+  ],
+  "mutator": {
+    "excludedMutations": [
+      "Regex",
+      "ArrowFunction",
+      "ArrayDeclaration",
+      "ObjectLiteral"
+    ]
+  },
+  "testFiles": [
+    "tests/unit/**/*.spec.ts"
+  ],
+  "thresholds": {
+    "high": 90,
+    "low": 75,
+    "break": 75
+  },
+  "coverageAnalysis": "perTest",
+  "testRunner": "vitest",
+  "vitest": {
+    "configFile": "vitest.config.ts"
+  },
+  "cleanTempDir": "always",
+  "timeoutMS": 5000,
+  "symlinkNodeModules": false,
+  "incremental": true
+}
