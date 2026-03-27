@@ -41,7 +41,7 @@ export class PrismaUsersRepository implements UsersRepository {
 		return user as AdminResponseDTO
 	}
 
-	async findAll(): Promise<AdminResponseDTO[] | null> {
+	async findAll(): Promise<AdminResponseDTO[] | []> {
 		const users = await this.prisma.user.findMany({
 			omit: { password: true }
 		})

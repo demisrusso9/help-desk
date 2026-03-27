@@ -61,7 +61,6 @@ report.[0-9]*.[0-9]*.[0-9]*.[0-9]*.json
 # Stryker
 coverage
 .stryker-tmp
-reports/stryker-incremental.json
 
 # Prisma
 prisma/generated

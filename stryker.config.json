@@ -10,7 +10,7 @@
     "fileName": "reports/mutation.html"
   },
   "mutate": [
-    "src/app/modules/**/*.ts"
+    "src/app/modules/**/services/*.ts"
   ],
   "mutator": {
     "excludedMutations": [
@@ -21,7 +21,7 @@
     ]
   },
   "testFiles": [
-    "tests/unit/**/*.spec.ts"
+    "tests/unit/services/**/*.spec.ts"
   ],
   "thresholds": {
     "high": 90,

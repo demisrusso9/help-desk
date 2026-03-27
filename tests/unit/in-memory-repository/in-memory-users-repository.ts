@@ -1,33 +1,24 @@
 import { Injectable } from '@nestjs/common'
 import { randomUUID } from 'crypto'
 
-import { AdminResponseDTO } from '@/app/modules/admin/schemas/admin.schema'
+import { AdminDTO, AdminResponseDTO } from '@/app/modules/admin/schemas/admin.schema'
 import { RegisterAdminDTO } from '@/app/modules/admin/schemas/register.schema'
 import { UpdateAdminDTO } from '@/app/modules/admin/schemas/update.schema'
 import { UsersRepository } from '@/database/repository/contracts/users.repository'
 
-type InMemoryUser = {
-	id: string
-	name: string
-	email: string
-	password: string
-	role: 'ADMIN'
-	createdAt: Date
-	updatedAt?: Date
-}
-
 @Injectable()
 export class InMemoryUsersRepository implements UsersRepository {
-	private users: InMemoryUser[] = []
+	public users: AdminDTO[] = []
 
 	async create(user: RegisterAdminDTO): Promise<AdminResponseDTO> {
-		const newUser: InMemoryUser = {
+		const newUser: AdminDTO = {
 			id: randomUUID(),
 			name: user.name,
 			email: user.email,
 			password: user.password,
 			role: 'ADMIN',
-			createdAt: new Date()
+			createdAt: new Date(),
+			mustChangePassword: false
 		}
 
 		this.users.push(newUser)
@@ -49,7 +40,7 @@ export class InMemoryUsersRepository implements UsersRepository {
 		return this.toResponseDTO(user)
 	}
 
-	async findAll(): Promise<AdminResponseDTO[] | null> {
+	async findAll(): Promise<AdminResponseDTO[] | []> {
 		if (this.users.length === 0) return []
 
 		return this.users.map((user) => this.toResponseDTO(user))
@@ -62,11 +53,25 @@ export class InMemoryUsersRepository implements UsersRepository {
 		}
 	}
 
-	update(user: UpdateAdminDTO): Promise<void> {
-		throw new Error('Method not implemented.')
+	async update(user: UpdateAdminDTO): Promise<void> {
+		const existingUser = this.users.find((u) => u.id === user.id)
+
+		if (!existingUser) {
+			throw new Error(`User with id ${user.id} not found`)
+		}
+
+		if (user.name !== undefined) {
+			existingUser.name = user.name
+		}
+
+		if (user.password !== undefined) {
+			existingUser.password = user.password
+		}
+
+		existingUser.updatedAt = new Date()
 	}
 
-	private toResponseDTO(user: InMemoryUser): AdminResponseDTO {
+	private toResponseDTO(user: AdminDTO): AdminResponseDTO {
 		// remove password like Prisma `omit`
 		const { password, ...rest } = user
 		return rest as AdminResponseDTO
