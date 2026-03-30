@@ -16,4 +16,4 @@ export const adminResponseSchema = adminSchema.omit({ password: true })
 
 export type AdminDTO = z.infer<typeof adminSchema>
 export type AdminResponseDTO = z.infer<typeof adminResponseSchema>
-export type AdminCredentialsDTO = Pick<AdminDTO, 'id' | 'password'>
+export type AdminCredentialsDTO = Pick<AdminDTO, 'id' | 'password' | 'role'>

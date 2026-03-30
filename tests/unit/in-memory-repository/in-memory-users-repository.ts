@@ -44,7 +44,7 @@ export class InMemoryUsersRepository implements UsersRepository {
 		const user = this.users.find((u) => u.email === email)
 		if (!user) return null
 
-		return { id: user.id, password: user.password }
+		return { id: user.id, password: user.password, role: user.role }
 	}
 
 	async findAll(): Promise<AdminResponseDTO[] | []> {

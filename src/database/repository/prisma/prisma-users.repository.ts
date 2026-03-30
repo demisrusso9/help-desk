@@ -44,7 +44,7 @@ export class PrismaUsersRepository implements UsersRepository {
 	async findCredentialsByEmail(email: string): Promise<AdminCredentialsDTO | null> {
 		const user = await this.prisma.user.findUnique({
 			where: { email },
-			select: { id: true, password: true }
+			select: { id: true, password: true, role: true }
 		})
 
 		return user

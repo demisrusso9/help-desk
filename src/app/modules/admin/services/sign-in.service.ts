@@ -29,7 +29,7 @@ export class SignInService {
 		}
 
 		const accessToken = this.jwtService.sign(
-			{ sub: checkIfUserExists.id },
+			{ sub: checkIfUserExists.id, role: checkIfUserExists.role },
 			{ expiresIn: this.configService.get('JWT_EXPIRES_IN') }
 		)
 
