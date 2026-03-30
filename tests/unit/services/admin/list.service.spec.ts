@@ -1,3 +1,4 @@
+import { Role } from '@/app/modules/admin/schemas/roles'
 import { ListService } from '@/app/modules/admin/services/list.service'
 import { InMemoryUsersRepository } from 'tests/unit/in-memory-repository/in-memory-users-repository'
 
@@ -14,7 +15,7 @@ describe('List Admin Users', () => {
 			name: 'Admin',
 			email: 'admin@admin.com',
 			password: '123456',
-			role: 'ADMIN',
+			role: Role.ADMIN,
 			createdAt: new Date(),
 			mustChangePassword: false
 		})

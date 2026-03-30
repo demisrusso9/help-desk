@@ -1,5 +1,6 @@
 import { UserAlreadyExistsError } from '@/app/modules/admin/errors/user-already-exists.error'
 import { RegisterAdminDTO } from '@/app/modules/admin/schemas/register.schema'
+import { Role } from '@/app/modules/admin/schemas/roles'
 import { RegisterService } from '@/app/modules/admin/services/register.service'
 import bcrypt from 'bcryptjs'
 import { InMemoryUsersRepository } from 'tests/unit/in-memory-repository/in-memory-users-repository'
@@ -12,7 +13,7 @@ describe('Register Admin User', () => {
 		name: 'Admin Demis',
 		email: 'admin@admin.com',
 		password: '123456',
-		role: 'ADMIN'
+		role: Role.ADMIN
 	}
 
 	beforeEach(() => {

@@ -1,8 +1,13 @@
 import { Injectable } from '@nestjs/common'
 import { randomUUID } from 'crypto'
 
-import { AdminCredentialsDTO, AdminDTO, AdminResponseDTO } from '@/app/modules/admin/schemas/admin.schema'
+import {
+	AdminCredentialsDTO,
+	AdminDTO,
+	AdminResponseDTO
+} from '@/app/modules/admin/schemas/admin.schema'
 import { RegisterAdminDTO } from '@/app/modules/admin/schemas/register.schema'
+import { Role } from '@/app/modules/admin/schemas/roles'
 import { UpdateAdminDTO } from '@/app/modules/admin/schemas/update.schema'
 import { UsersRepository } from '@/database/repository/contracts/users.repository'
 
@@ -16,7 +21,7 @@ export class InMemoryUsersRepository implements UsersRepository {
 			name: user.name,
 			email: user.email,
 			password: user.password,
-			role: 'ADMIN',
+			role: Role.ADMIN,
 			createdAt: new Date(),
 			mustChangePassword: false
 		}

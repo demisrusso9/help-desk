@@ -1,158 +1,8 @@
 {
   "files": {
-    "src/app/modules/admin/services/register.service.ts": {
-      "language": "typescript",
-      "mutants": [
-        {
-          "id": "9",
-          "mutatorName": "ObjectLiteral",
-          "replacement": "{}",
-          "statusReason": "Ignored because of excluded mutation \"ObjectLiteral\"",
-          "status": "Ignored",
-          "static": false,
-          "location": {
-            "end": {
-              "column": 4,
-              "line": 23
-            },
-            "start": {
-              "column": 34,
-              "line": 20
-            }
-          }
-        },
-        {
-          "id": "5",
-          "mutatorName": "BlockStatement",
-          "replacement": "{}",
-          "statusReason": "expected [] to have a length of 1 but got +0",
-          "status": "Killed",
-          "testsCompleted": 1,
-          "killedBy": [
-            "0"
-          ],
-          "location": {
-            "end": {
-              "column": 3,
-              "line": 26
-            },
-            "start": {
-              "column": 40,
-              "line": 11
-            }
-          }
-        },
-        {
-          "id": "6",
-          "mutatorName": "ConditionalExpression",
-          "replacement": "true",
-          "statusReason": "User already exists",
-          "status": "Killed",
-          "testsCompleted": 1,
-          "killedBy": [
-            "0"
-          ],
-          "location": {
-            "end": {
-              "column": 24,
-              "line": 14
-            },
-            "start": {
-              "column": 7,
-              "line": 14
-            }
-          }
-        },
-        {
-          "id": "7",
-          "mutatorName": "ConditionalExpression",
-          "replacement": "false",
-          "statusReason": "promise resolved \"undefined\" instead of rejecting",
-          "status": "Killed",
-          "testsCompleted": 3,
-          "killedBy": [
-            "2"
-          ],
-          "location": {
-            "end": {
-              "column": 24,
-              "line": 14
-            },
-            "start": {
-              "column": 7,
-              "line": 14
-            }
-          }
-        },
-        {
-          "id": "8",
-          "mutatorName": "BlockStatement",
-          "replacement": "{}",
-          "statusReason": "promise resolved \"undefined\" instead of rejecting",
-          "status": "Killed",
-          "testsCompleted": 3,
-          "killedBy": [
-            "2"
-          ],
-          "location": {
-            "end": {
-              "column": 4,
-              "line": 16
-            },
-            "start": {
-              "column": 26,
-              "line": 14
-            }
-          }
-        }
-      ],
-      "source": "import { Injectable } from '@nestjs/common'\r\nimport { hash } from 'bcryptjs'\r\nimport { UsersRepository } from '../../../../database/repository/contracts/users.repository'\r\nimport { UserAlreadyExistsError } from '../errors/user-already-exists.error'\r\nimport { RegisterAdminDTO } from '../schemas/register.schema'\r\n\r\n@Injectable()\r\nexport class RegisterService {\r\n\tconstructor(private readonly userRepository: UsersRepository) {}\r\n\r\n\tasync execute(user: RegisterAdminDTO) {\r\n\t\tconst checkIfUserExists = await this.userRepository.findByEmail(user.email)\r\n\r\n\t\tif (checkIfUserExists) {\r\n\t\t\tthrow new UserAlreadyExistsError()\r\n\t\t}\r\n\r\n\t\tconst hashedPassword = await hash(user.password, 10)\r\n\r\n\t\tconst userWithHashedPassword = {\r\n\t\t\t...user,\r\n\t\t\tpassword: hashedPassword\r\n\t\t}\r\n\r\n\t\tawait this.userRepository.create(userWithHashedPassword)\r\n\t}\r\n}\r\n"
-    },
     "src/app/modules/admin/services/delete-by-id.service.ts": {
       "language": "typescript",
       "mutants": [
-        {
-          "id": "2",
-          "mutatorName": "ConditionalExpression",
-          "replacement": "false",
-          "statusReason": "User not found",
-          "status": "Killed",
-          "testsCompleted": 1,
-          "killedBy": [
-            "5"
-          ],
-          "location": {
-            "end": {
-              "column": 24,
-              "line": 12
-            },
-            "start": {
-              "column": 7,
-              "line": 12
-            }
-          }
-        },
-        {
-          "id": "3",
-          "mutatorName": "BlockStatement",
-          "replacement": "{}",
-          "statusReason": "User not found",
-          "status": "Killed",
-          "testsCompleted": 1,
-          "killedBy": [
-            "5"
-          ],
-          "location": {
-            "end": {
-              "column": 4,
-              "line": 14
-            },
-            "start": {
-              "column": 26,
-              "line": 12
-            }
-          }
-        },
         {
           "id": "0",
           "mutatorName": "BlockStatement",
@@ -160,9 +10,9 @@
           "statusReason": "expected [ { id: '123', name: 'Admin', …(5) } ] to have a length of +0 but got 1",
           "status": "Killed",
           "testsCompleted": 1,
-          "killedBy": [
-            "5"
-          ],
+          "static": false,
+          "killedBy": [],
+          "coveredBy": [],
           "location": {
             "end": {
               "column": 3,
@@ -181,9 +31,9 @@
           "statusReason": "promise resolved \"undefined\" instead of rejecting",
           "status": "Killed",
           "testsCompleted": 2,
-          "killedBy": [
-            "6"
-          ],
+          "static": false,
+          "killedBy": [],
+          "coveredBy": [],
           "location": {
             "end": {
               "column": 24,
@@ -191,6 +41,48 @@
             },
             "start": {
               "column": 7,
+              "line": 12
+            }
+          }
+        },
+        {
+          "id": "2",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "false",
+          "statusReason": "User not found",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "static": false,
+          "killedBy": [],
+          "coveredBy": [],
+          "location": {
+            "end": {
+              "column": 24,
+              "line": 12
+            },
+            "start": {
+              "column": 7,
+              "line": 12
+            }
+          }
+        },
+        {
+          "id": "3",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "statusReason": "User not found",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "static": false,
+          "killedBy": [],
+          "coveredBy": [],
+          "location": {
+            "end": {
+              "column": 4,
+              "line": 14
+            },
+            "start": {
+              "column": 26,
               "line": 12
             }
           }
@@ -208,9 +100,9 @@
           "statusReason": "Target cannot be null or undefined.",
           "status": "Killed",
           "testsCompleted": 1,
-          "killedBy": [
-            "7"
-          ],
+          "static": false,
+          "killedBy": [],
+          "coveredBy": [],
           "location": {
             "end": {
               "column": 3,
@@ -225,40 +117,396 @@
       ],
       "source": "import { Injectable } from '@nestjs/common'\r\nimport { UsersRepository } from '../../../../database/repository/contracts/users.repository'\r\n\r\n@Injectable()\r\nexport class ListService {\r\n\tconstructor(private readonly userRepository: UsersRepository) {}\r\n\r\n\tasync execute() {\r\n\t\treturn await this.userRepository.findAll()\r\n\t}\r\n}\r\n"
     },
-    "src/app/modules/admin/services/update.service.ts": {
+    "src/app/modules/admin/services/register.service.ts": {
       "language": "typescript",
       "mutants": [
         {
-          "id": "11",
-          "mutatorName": "BooleanLiteral",
-          "replacement": "checkIfUserExists",
-          "statusReason": "User not found",
+          "id": "5",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "statusReason": "expected [] to have a length of 1 but got +0",
           "status": "Killed",
           "testsCompleted": 1,
-          "killedBy": [
-            "3"
-          ],
+          "static": false,
+          "killedBy": [],
+          "coveredBy": [],
           "location": {
             "end": {
-              "column": 25,
-              "line": 13
+              "column": 3,
+              "line": 26
             },
             "start": {
-              "column": 7,
-              "line": 13
+              "column": 40,
+              "line": 11
             }
           }
         },
         {
+          "id": "6",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "true",
+          "statusReason": "User already exists",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "static": false,
+          "killedBy": [],
+          "coveredBy": [],
+          "location": {
+            "end": {
+              "column": 24,
+              "line": 14
+            },
+            "start": {
+              "column": 7,
+              "line": 14
+            }
+          }
+        },
+        {
+          "id": "7",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "false",
+          "statusReason": "promise resolved \"undefined\" instead of rejecting",
+          "status": "Killed",
+          "testsCompleted": 3,
+          "static": false,
+          "killedBy": [],
+          "coveredBy": [],
+          "location": {
+            "end": {
+              "column": 24,
+              "line": 14
+            },
+            "start": {
+              "column": 7,
+              "line": 14
+            }
+          }
+        },
+        {
+          "id": "8",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "statusReason": "promise resolved \"undefined\" instead of rejecting",
+          "status": "Killed",
+          "testsCompleted": 3,
+          "static": false,
+          "killedBy": [],
+          "coveredBy": [],
+          "location": {
+            "end": {
+              "column": 4,
+              "line": 16
+            },
+            "start": {
+              "column": 26,
+              "line": 14
+            }
+          }
+        },
+        {
+          "id": "9",
+          "mutatorName": "ObjectLiteral",
+          "replacement": "{}",
+          "statusReason": "Ignored because of excluded mutation \"ObjectLiteral\"",
+          "status": "Ignored",
+          "static": false,
+          "location": {
+            "end": {
+              "column": 4,
+              "line": 23
+            },
+            "start": {
+              "column": 34,
+              "line": 20
+            }
+          }
+        }
+      ],
+      "source": "import { Injectable } from '@nestjs/common'\r\nimport { hash } from 'bcryptjs'\r\nimport { UsersRepository } from '../../../../database/repository/contracts/users.repository'\r\nimport { UserAlreadyExistsError } from '../errors/user-already-exists.error'\r\nimport { RegisterAdminDTO } from '../schemas/register.schema'\r\n\r\n@Injectable()\r\nexport class RegisterService {\r\n\tconstructor(private readonly userRepository: UsersRepository) {}\r\n\r\n\tasync execute(user: RegisterAdminDTO) {\r\n\t\tconst checkIfUserExists = await this.userRepository.findByEmail(user.email)\r\n\r\n\t\tif (checkIfUserExists) {\r\n\t\t\tthrow new UserAlreadyExistsError()\r\n\t\t}\r\n\r\n\t\tconst hashedPassword = await hash(user.password, 10)\r\n\r\n\t\tconst userWithHashedPassword = {\r\n\t\t\t...user,\r\n\t\t\tpassword: hashedPassword\r\n\t\t}\r\n\r\n\t\tawait this.userRepository.create(userWithHashedPassword)\r\n\t}\r\n}\r\n"
+    },
+    "src/app/modules/admin/services/sign-in.service.ts": {
+      "language": "typescript",
+      "mutants": [
+        {
           "id": "10",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "statusReason": "expected undefined to deeply equal ObjectContaining{…}",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "static": false,
+          "killedBy": [],
+          "coveredBy": [],
+          "location": {
+            "end": {
+              "column": 3,
+              "line": 39
+            },
+            "start": {
+              "column": 37,
+              "line": 18
+            }
+          }
+        },
+        {
+          "id": "11",
+          "mutatorName": "BooleanLiteral",
+          "replacement": "checkIfUserExists",
+          "statusReason": "Invalid credentials",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "static": false,
+          "killedBy": [],
+          "coveredBy": [],
+          "location": {
+            "end": {
+              "column": 25,
+              "line": 21
+            },
+            "start": {
+              "column": 7,
+              "line": 21
+            }
+          }
+        },
+        {
+          "id": "12",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "true",
+          "statusReason": "Invalid credentials",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "static": false,
+          "killedBy": [],
+          "coveredBy": [],
+          "location": {
+            "end": {
+              "column": 25,
+              "line": 21
+            },
+            "start": {
+              "column": 7,
+              "line": 21
+            }
+          }
+        },
+        {
+          "id": "13",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "false",
+          "statusReason": "expected TypeError: Cannot read properties of null… to be an instance of InvalidCredentialsError",
+          "status": "Killed",
+          "testsCompleted": 3,
+          "static": false,
+          "killedBy": [],
+          "coveredBy": [],
+          "location": {
+            "end": {
+              "column": 25,
+              "line": 21
+            },
+            "start": {
+              "column": 7,
+              "line": 21
+            }
+          }
+        },
+        {
+          "id": "14",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "statusReason": "expected TypeError: Cannot read properties of null… to be an instance of InvalidCredentialsError",
+          "status": "Killed",
+          "testsCompleted": 3,
+          "static": false,
+          "killedBy": [],
+          "coveredBy": [],
+          "location": {
+            "end": {
+              "column": 4,
+              "line": 23
+            },
+            "start": {
+              "column": 27,
+              "line": 21
+            }
+          }
+        },
+        {
+          "id": "15",
+          "mutatorName": "BooleanLiteral",
+          "replacement": "doesPasswordMatch",
+          "statusReason": "Invalid credentials",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "static": false,
+          "killedBy": [],
+          "coveredBy": [],
+          "location": {
+            "end": {
+              "column": 25,
+              "line": 27
+            },
+            "start": {
+              "column": 7,
+              "line": 27
+            }
+          }
+        },
+        {
+          "id": "16",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "true",
+          "statusReason": "Invalid credentials",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "static": false,
+          "killedBy": [],
+          "coveredBy": [],
+          "location": {
+            "end": {
+              "column": 25,
+              "line": 27
+            },
+            "start": {
+              "column": 7,
+              "line": 27
+            }
+          }
+        },
+        {
+          "id": "17",
+          "mutatorName": "ConditionalExpression",
+          "replacement": "false",
+          "statusReason": "promise resolved \"{ accessToken: 'valid-access-token' }\" instead of rejecting",
+          "status": "Killed",
+          "testsCompleted": 2,
+          "static": false,
+          "killedBy": [],
+          "coveredBy": [],
+          "location": {
+            "end": {
+              "column": 25,
+              "line": 27
+            },
+            "start": {
+              "column": 7,
+              "line": 27
+            }
+          }
+        },
+        {
+          "id": "18",
+          "mutatorName": "BlockStatement",
+          "replacement": "{}",
+          "statusReason": "promise resolved \"{ accessToken: 'valid-access-token' }\" instead of rejecting",
+          "status": "Killed",
+          "testsCompleted": 2,
+          "static": false,
+          "killedBy": [],
+          "coveredBy": [],
+          "location": {
+            "end": {
+              "column": 4,
+              "line": 29
+            },
+            "start": {
+              "column": 27,
+              "line": 27
+            }
+          }
+        },
+        {
+          "id": "19",
+          "mutatorName": "ObjectLiteral",
+          "replacement": "{}",
+          "statusReason": "Ignored because of excluded mutation \"ObjectLiteral\"",
+          "status": "Ignored",
+          "static": false,
+          "location": {
+            "end": {
+              "column": 63,
+              "line": 32
+            },
+            "start": {
+              "column": 4,
+              "line": 32
+            }
+          }
+        },
+        {
+          "id": "20",
+          "mutatorName": "ObjectLiteral",
+          "replacement": "{}",
+          "statusReason": "Ignored because of excluded mutation \"ObjectLiteral\"",
+          "status": "Ignored",
+          "static": false,
+          "location": {
+            "end": {
+              "column": 59,
+              "line": 33
+            },
+            "start": {
+              "column": 4,
+              "line": 33
+            }
+          }
+        },
+        {
+          "id": "21",
+          "mutatorName": "StringLiteral",
+          "replacement": "\"\"",
+          "status": "Survived",
+          "testsCompleted": 3,
+          "static": false,
+          "killedBy": [],
+          "coveredBy": [],
+          "location": {
+            "end": {
+              "column": 56,
+              "line": 33
+            },
+            "start": {
+              "column": 40,
+              "line": 33
+            }
+          }
+        },
+        {
+          "id": "22",
+          "mutatorName": "ObjectLiteral",
+          "replacement": "{}",
+          "statusReason": "Ignored because of excluded mutation \"ObjectLiteral\"",
+          "status": "Ignored",
+          "static": false,
+          "location": {
+            "end": {
+              "column": 4,
+              "line": 38
+            },
+            "start": {
+              "column": 10,
+              "line": 36
+            }
+          }
+        }
+      ],
+      "source": "import { Envs } from '@/config/env'\r\nimport { UsersRepository } from '@/database/repository/contracts/users.repository'\r\nimport { Injectable } from '@nestjs/common'\r\nimport { ConfigService } from '@nestjs/config'\r\nimport { JwtService } from '@nestjs/jwt'\r\nimport { compare } from 'bcryptjs'\r\nimport { InvalidCredentialsError } from '../errors/invalid-credentials.error'\r\nimport { SignInUserDTO } from '../schemas/sign-in-user.schema'\r\n\r\n@Injectable()\r\nexport class SignInService {\r\n\tconstructor(\r\n\t\tprivate configService: ConfigService<Envs, true>,\r\n\t\tprivate userRepository: UsersRepository,\r\n\t\tprivate jwtService: JwtService\r\n\t) {}\r\n\r\n\tasync execute(user: SignInUserDTO) {\r\n\t\tconst checkIfUserExists = await this.userRepository.findCredentialsByEmail(user.email)\r\n\r\n\t\tif (!checkIfUserExists) {\r\n\t\t\tthrow new InvalidCredentialsError()\r\n\t\t}\r\n\r\n\t\tconst doesPasswordMatch = await compare(user.password, checkIfUserExists.password)\r\n\r\n\t\tif (!doesPasswordMatch) {\r\n\t\t\tthrow new InvalidCredentialsError()\r\n\t\t}\r\n\r\n\t\tconst accessToken = this.jwtService.sign(\r\n\t\t\t{ sub: checkIfUserExists.id, role: checkIfUserExists.role },\r\n\t\t\t{ expiresIn: this.configService.get('JWT_EXPIRES_IN') }\r\n\t\t)\r\n\r\n\t\treturn {\r\n\t\t\taccessToken\r\n\t\t}\r\n\t}\r\n}\r\n"
+    },
+    "src/app/modules/admin/services/update.service.ts": {
+      "language": "typescript",
+      "mutants": [
+        {
+          "id": "23",
           "mutatorName": "BlockStatement",
           "replacement": "{}",
           "statusReason": "expected 'Admin' to be 'Admin Updated' // Object.is equality",
           "status": "Killed",
           "testsCompleted": 1,
-          "killedBy": [
-            "3"
-          ],
+          "static": false,
+          "killedBy": [],
+          "coveredBy": [],
           "location": {
             "end": {
               "column": 3,
@@ -271,15 +519,36 @@
           }
         },
         {
-          "id": "12",
+          "id": "24",
+          "mutatorName": "BooleanLiteral",
+          "replacement": "checkIfUserExists",
+          "statusReason": "User not found",
+          "status": "Killed",
+          "testsCompleted": 1,
+          "static": false,
+          "killedBy": [],
+          "coveredBy": [],
+          "location": {
+            "end": {
+              "column": 25,
+              "line": 13
+            },
+            "start": {
+              "column": 7,
+              "line": 13
+            }
+          }
+        },
+        {
+          "id": "25",
           "mutatorName": "ConditionalExpression",
           "replacement": "true",
           "statusReason": "User not found",
           "status": "Killed",
           "testsCompleted": 1,
-          "killedBy": [
-            "3"
-          ],
+          "static": false,
+          "killedBy": [],
+          "coveredBy": [],
           "location": {
             "end": {
               "column": 25,
@@ -292,15 +561,15 @@
           }
         },
         {
-          "id": "13",
+          "id": "26",
           "mutatorName": "ConditionalExpression",
           "replacement": "false",
           "statusReason": "expected Error: User with id invalid-id not found to be an instance of UserNotFoundError",
           "status": "Killed",
           "testsCompleted": 2,
-          "killedBy": [
-            "4"
-          ],
+          "static": false,
+          "killedBy": [],
+          "coveredBy": [],
           "location": {
             "end": {
               "column": 25,
@@ -313,15 +582,15 @@
           }
         },
         {
-          "id": "14",
+          "id": "27",
           "mutatorName": "BlockStatement",
           "replacement": "{}",
           "statusReason": "expected Error: User with id invalid-id not found to be an instance of UserNotFoundError",
           "status": "Killed",
           "testsCompleted": 2,
-          "killedBy": [
-            "4"
-          ],
+          "static": false,
+          "killedBy": [],
+          "coveredBy": [],
           "location": {
             "end": {
               "column": 4,
@@ -344,57 +613,74 @@
     "break": 75
   },
   "testFiles": {
-    "tests/unit/services/admin/register.service.spec.ts": {
+    "tests/unit/services/admin/sign-in.service.spec.ts": {
       "tests": [
         {
           "id": "0",
-          "name": "Register Admin User should register an admin user"
+          "name": "Sign In Admin User should sign in an admin user and return an access token"
         },
         {
           "id": "1",
-          "name": "Register Admin User should hash the password before saving"
+          "name": "Sign In Admin User should throw a error if password is incorrect"
         },
         {
           "id": "2",
+          "name": "Sign In Admin User should throw a error if email is incorrect"
+        }
+      ],
+      "source": "import { InvalidCredentialsError } from '@/app/modules/admin/errors/invalid-credentials.error'\r\nimport { Role } from '@/app/modules/admin/schemas/roles'\r\nimport { SignInService } from '@/app/modules/admin/services/sign-in.service'\r\nimport { Envs } from '@/config/env'\r\nimport { ConfigService } from '@nestjs/config'\r\nimport { JwtService } from '@nestjs/jwt'\r\nimport { hash } from 'bcryptjs'\r\nimport { InMemoryUsersRepository } from 'tests/unit/in-memory-repository/in-memory-users-repository'\r\n\r\nlet usersRepository: InMemoryUsersRepository\r\nlet sut: SignInService\r\nlet jwtService: JwtService\r\nlet configService: ConfigService<Envs, true>\r\n\r\ndescribe('Sign In Admin User', () => {\r\n\tbeforeEach(async () => {\r\n\t\tusersRepository = new InMemoryUsersRepository()\r\n\t\tjwtService = new JwtService({} as any)\r\n\t\tconfigService = new ConfigService({} as any)\r\n\r\n\t\tsut = new SignInService(configService, usersRepository, jwtService)\r\n\r\n\t\tjwtService.sign = vi.fn().mockReturnValue('valid-access-token')\r\n\t\tconfigService.get = vi.fn().mockImplementation((key: string) => {\r\n\t\t\tif (key === 'JWT_EXPIRES_IN') return '1d'\r\n\t\t\treturn 'any'\r\n\t\t})\r\n\r\n\t\tusersRepository.users.push({\r\n\t\t\tid: '123',\r\n\t\t\tname: 'Admin',\r\n\t\t\temail: 'admin@admin.com',\r\n\t\t\tpassword: await hash('123456', 8),\r\n\t\t\trole: Role.ADMIN,\r\n\t\t\tcreatedAt: new Date(),\r\n\t\t\tmustChangePassword: false\r\n\t\t})\r\n\t})\r\n\r\n\tit('should sign in an admin user and return an access token', async () => {\r\n\t\texpect(\r\n\t\t\tawait sut.execute({\r\n\t\t\t\temail: 'admin@admin.com',\r\n\t\t\t\tpassword: '123456'\r\n\t\t\t})\r\n\t\t).toEqual(\r\n\t\t\texpect.objectContaining({\r\n\t\t\t\taccessToken: expect.any(String)\r\n\t\t\t})\r\n\t\t)\r\n\t})\r\n\r\n\tit('should throw a error if password is incorrect', async () => {\r\n\t\tawait expect(\r\n\t\t\tsut.execute({\r\n\t\t\t\temail: 'admin@admin.com',\r\n\t\t\t\tpassword: 'wrong-password'\r\n\t\t\t})\r\n\t\t).rejects.toBeInstanceOf(InvalidCredentialsError)\r\n\t})\r\n\r\n\tit('should throw a error if email is incorrect', async () => {\r\n\t\tawait expect(\r\n\t\t\tsut.execute({\r\n\t\t\t\temail: 'wrong-email@admin.com',\r\n\t\t\t\tpassword: '123456'\r\n\t\t\t})\r\n\t\t).rejects.toBeInstanceOf(InvalidCredentialsError)\r\n\t})\r\n\r\n\t// it('should throw if expiresIn is empty', async () => {\r\n\t// \tconfigService.get = vi.fn().mockImplementation((key: string) => {\r\n\t// \t\tif (key === 'JWT_EXPIRES_IN') return ''\r\n\t// \t\treturn 'any'\r\n\t// \t})\r\n\r\n\t// \tawait expect(\r\n\t// \t\tsut.execute({\r\n\t// \t\t\temail: 'admin@admin.com',\r\n\t// \t\t\tpassword: '123456'\r\n\t// \t\t})\r\n\t// \t).rejects.toThrow()\r\n\t// })\r\n})\r\n"
+    },
+    "tests/unit/services/admin/register.service.spec.ts": {
+      "tests": [
+        {
+          "id": "3",
+          "name": "Register Admin User should register an admin user"
+        },
+        {
+          "id": "4",
+          "name": "Register Admin User should hash the password before saving"
+        },
+        {
+          "id": "5",
           "name": "Register Admin User should not register an admin user with an existing email"
         }
       ],
-      "source": "import { UserAlreadyExistsError } from '@/app/modules/admin/errors/user-already-exists.error'\r\nimport { RegisterAdminDTO } from '@/app/modules/admin/schemas/register.schema'\r\nimport { RegisterService } from '@/app/modules/admin/services/register.service'\r\nimport bcrypt from 'bcryptjs'\r\nimport { InMemoryUsersRepository } from 'tests/unit/in-memory-repository/in-memory-users-repository'\r\n\r\nlet usersRepository: InMemoryUsersRepository\r\nlet sut: RegisterService\r\n\r\ndescribe('Register Admin User', () => {\r\n\tconst adminData: RegisterAdminDTO = {\r\n\t\tname: 'Admin Demis',\r\n\t\temail: 'admin@admin.com',\r\n\t\tpassword: '123456',\r\n\t\trole: 'ADMIN'\r\n\t}\r\n\r\n\tbeforeEach(() => {\r\n\t\tusersRepository = new InMemoryUsersRepository()\r\n\t\tsut = new RegisterService(usersRepository)\r\n\t})\r\n\r\n\tit('should register an admin user', async () => {\r\n\t\tawait sut.execute(adminData)\r\n\r\n\t\texpect(usersRepository.users).toHaveLength(1)\r\n\t\texpect(usersRepository.users[0].id).toBeTruthy()\r\n\t\texpect(usersRepository.users[0].createdAt).toBeTruthy()\r\n\t})\r\n\r\n\tit('should hash the password before saving', async () => {\r\n\t\tawait sut.execute(adminData)\r\n\r\n\t\tconst isPasswordHashed = await bcrypt.compare(\r\n\t\t\t'123456',\r\n\t\t\tusersRepository.users[0].password\r\n\t\t)\r\n\r\n\t\texpect(isPasswordHashed).toBe(true)\r\n\t})\r\n\r\n\tit('should not register an admin user with an existing email', async () => {\r\n\t\tawait sut.execute(adminData)\r\n\r\n\t\tawait expect(sut.execute(adminData)).rejects.toBeInstanceOf(UserAlreadyExistsError)\r\n\t})\r\n})\r\n"
+      "source": "import { UserAlreadyExistsError } from '@/app/modules/admin/errors/user-already-exists.error'\r\nimport { RegisterAdminDTO } from '@/app/modules/admin/schemas/register.schema'\r\nimport { Role } from '@/app/modules/admin/schemas/roles'\r\nimport { RegisterService } from '@/app/modules/admin/services/register.service'\r\nimport bcrypt from 'bcryptjs'\r\nimport { InMemoryUsersRepository } from 'tests/unit/in-memory-repository/in-memory-users-repository'\r\n\r\nlet usersRepository: InMemoryUsersRepository\r\nlet sut: RegisterService\r\n\r\ndescribe('Register Admin User', () => {\r\n\tconst adminData: RegisterAdminDTO = {\r\n\t\tname: 'Admin Demis',\r\n\t\temail: 'admin@admin.com',\r\n\t\tpassword: '123456',\r\n\t\trole: Role.ADMIN\r\n\t}\r\n\r\n\tbeforeEach(() => {\r\n\t\tusersRepository = new InMemoryUsersRepository()\r\n\t\tsut = new RegisterService(usersRepository)\r\n\t})\r\n\r\n\tit('should register an admin user', async () => {\r\n\t\tawait sut.execute(adminData)\r\n\r\n\t\texpect(usersRepository.users).toHaveLength(1)\r\n\t\texpect(usersRepository.users[0].id).toBeTruthy()\r\n\t\texpect(usersRepository.users[0].createdAt).toBeTruthy()\r\n\t})\r\n\r\n\tit('should hash the password before saving', async () => {\r\n\t\tawait sut.execute(adminData)\r\n\r\n\t\tconst isPasswordHashed = await bcrypt.compare(\r\n\t\t\t'123456',\r\n\t\t\tusersRepository.users[0].password\r\n\t\t)\r\n\r\n\t\texpect(isPasswordHashed).toBe(true)\r\n\t})\r\n\r\n\tit('should not register an admin user with an existing email', async () => {\r\n\t\tawait sut.execute(adminData)\r\n\r\n\t\tawait expect(sut.execute(adminData)).rejects.toBeInstanceOf(UserAlreadyExistsError)\r\n\t})\r\n})\r\n"
     },
     "tests/unit/services/admin/update.service.spec.ts": {
       "tests": [
         {
-          "id": "3",
+          "id": "6",
           "name": "Update Admin User should update an admin user"
         },
         {
-          "id": "4",
+          "id": "7",
           "name": "Update Admin User should not update an admin user with an invalid id"
         }
       ],
-      "source": "import { UserNotFoundError } from '@/app/modules/admin/errors/user-not-found.error'\r\nimport { UpdateAdminDTO } from '@/app/modules/admin/schemas/update.schema'\r\nimport { UpdateService } from '@/app/modules/admin/services/update.service'\r\nimport { InMemoryUsersRepository } from 'tests/unit/in-memory-repository/in-memory-users-repository'\r\n\r\nlet usersRepository: InMemoryUsersRepository\r\nlet sut: UpdateService\r\n\r\ndescribe('Update Admin User', () => {\r\n\tconst adminData: UpdateAdminDTO = {\r\n\t\tid: '123',\r\n\t\tname: 'Admin Updated'\r\n\t}\r\n\r\n\tbeforeEach(() => {\r\n\t\tusersRepository = new InMemoryUsersRepository()\r\n\t\tsut = new UpdateService(usersRepository)\r\n\r\n\t\tusersRepository.users.push({\r\n\t\t\tid: '123',\r\n\t\t\tname: 'Admin',\r\n\t\t\temail: 'admin@admin.com',\r\n\t\t\tpassword: '123456',\r\n\t\t\trole: 'ADMIN',\r\n\t\t\tcreatedAt: new Date(),\r\n\t\t\tmustChangePassword: false\r\n\t\t})\r\n\t})\r\n\r\n\tit('should update an admin user', async () => {\r\n\t\tawait sut.execute(adminData)\r\n\r\n\t\texpect(usersRepository.users).toHaveLength(1)\r\n\t\texpect(usersRepository.users[0].name).toBe('Admin Updated')\r\n\t\texpect(usersRepository.users[0].updatedAt).toBeTruthy()\r\n\t})\r\n\r\n\tit('should not update an admin user with an invalid id', async () => {\r\n\t\tconst invalidAdminData: UpdateAdminDTO = {\r\n\t\t\tid: 'invalid-id',\r\n\t\t\tname: 'Admin Updated'\r\n\t\t}\r\n\r\n\t\tawait expect(sut.execute(invalidAdminData)).rejects.toBeInstanceOf(UserNotFoundError)\r\n\t})\r\n})\r\n"
+      "source": "import { UserNotFoundError } from '@/app/modules/admin/errors/user-not-found.error'\r\nimport { Role } from '@/app/modules/admin/schemas/roles'\r\nimport { UpdateAdminDTO } from '@/app/modules/admin/schemas/update.schema'\r\nimport { UpdateService } from '@/app/modules/admin/services/update.service'\r\nimport { InMemoryUsersRepository } from 'tests/unit/in-memory-repository/in-memory-users-repository'\r\n\r\nlet usersRepository: InMemoryUsersRepository\r\nlet sut: UpdateService\r\n\r\ndescribe('Update Admin User', () => {\r\n\tconst adminData: UpdateAdminDTO = {\r\n\t\tid: '123',\r\n\t\tname: 'Admin Updated'\r\n\t}\r\n\r\n\tbeforeEach(() => {\r\n\t\tusersRepository = new InMemoryUsersRepository()\r\n\t\tsut = new UpdateService(usersRepository)\r\n\r\n\t\tusersRepository.users.push({\r\n\t\t\tid: '123',\r\n\t\t\tname: 'Admin',\r\n\t\t\temail: 'admin@admin.com',\r\n\t\t\tpassword: '123456',\r\n\t\t\trole: Role.ADMIN,\r\n\t\t\tcreatedAt: new Date(),\r\n\t\t\tmustChangePassword: false\r\n\t\t})\r\n\t})\r\n\r\n\tit('should update an admin user', async () => {\r\n\t\tawait sut.execute(adminData)\r\n\r\n\t\texpect(usersRepository.users).toHaveLength(1)\r\n\t\texpect(usersRepository.users[0].name).toBe('Admin Updated')\r\n\t\texpect(usersRepository.users[0].updatedAt).toBeTruthy()\r\n\t})\r\n\r\n\tit('should not update an admin user with an invalid id', async () => {\r\n\t\tconst invalidAdminData: UpdateAdminDTO = {\r\n\t\t\tid: 'invalid-id',\r\n\t\t\tname: 'Admin Updated'\r\n\t\t}\r\n\r\n\t\tawait expect(sut.execute(invalidAdminData)).rejects.toBeInstanceOf(UserNotFoundError)\r\n\t})\r\n})\r\n"
     },
     "tests/unit/services/admin/delete-by-id.service.spec.ts": {
       "tests": [
         {
-          "id": "5",
+          "id": "8",
           "name": "Delete Admin User by ID should delete an admin user by ID"
         },
         {
-          "id": "6",
+          "id": "9",
           "name": "Delete Admin User by ID should not delete a non-existent admin user"
         }
       ],
-      "source": "import { UserNotFoundError } from '@/app/modules/admin/errors/user-not-found.error'\r\nimport { DeleteByIdService } from '@/app/modules/admin/services/delete-by-id.service'\r\nimport { InMemoryUsersRepository } from 'tests/unit/in-memory-repository/in-memory-users-repository'\r\n\r\nlet usersRepository: InMemoryUsersRepository\r\nlet sut: DeleteByIdService\r\n\r\ndescribe('Delete Admin User by ID', () => {\r\n\tbeforeEach(() => {\r\n\t\tusersRepository = new InMemoryUsersRepository()\r\n\t\tsut = new DeleteByIdService(usersRepository)\r\n\r\n\t\tusersRepository.users.push({\r\n\t\t\tid: '123',\r\n\t\t\tname: 'Admin',\r\n\t\t\temail: 'admin@admin.com',\r\n\t\t\tpassword: '123456',\r\n\t\t\trole: 'ADMIN',\r\n\t\t\tcreatedAt: new Date(),\r\n\t\t\tmustChangePassword: false\r\n\t\t})\r\n\t})\r\n\r\n\tit('should delete an admin user by ID', async () => {\r\n\t\tawait sut.execute('123')\r\n\r\n\t\texpect(usersRepository.users).toHaveLength(0)\r\n\t})\r\n\r\n\tit('should not delete a non-existent admin user', async () => {\r\n\t\tawait expect(sut.execute('non-existent-id')).rejects.toBeInstanceOf(UserNotFoundError)\r\n\t})\r\n})\r\n"
+      "source": "import { UserNotFoundError } from '@/app/modules/admin/errors/user-not-found.error'\r\nimport { Role } from '@/app/modules/admin/schemas/roles'\r\nimport { DeleteByIdService } from '@/app/modules/admin/services/delete-by-id.service'\r\nimport { InMemoryUsersRepository } from 'tests/unit/in-memory-repository/in-memory-users-repository'\r\n\r\nlet usersRepository: InMemoryUsersRepository\r\nlet sut: DeleteByIdService\r\n\r\ndescribe('Delete Admin User by ID', () => {\r\n\tbeforeEach(() => {\r\n\t\tusersRepository = new InMemoryUsersRepository()\r\n\t\tsut = new DeleteByIdService(usersRepository)\r\n\r\n\t\tusersRepository.users.push({\r\n\t\t\tid: '123',\r\n\t\t\tname: 'Admin',\r\n\t\t\temail: 'admin@admin.com',\r\n\t\t\tpassword: '123456',\r\n\t\t\trole: Role.ADMIN,\r\n\t\t\tcreatedAt: new Date(),\r\n\t\t\tmustChangePassword: false\r\n\t\t})\r\n\t})\r\n\r\n\tit('should delete an admin user by ID', async () => {\r\n\t\tawait sut.execute('123')\r\n\r\n\t\texpect(usersRepository.users).toHaveLength(0)\r\n\t})\r\n\r\n\tit('should not delete a non-existent admin user', async () => {\r\n\t\tawait expect(sut.execute('non-existent-id')).rejects.toBeInstanceOf(UserNotFoundError)\r\n\t})\r\n})\r\n"
     },
     "tests/unit/services/admin/list.service.spec.ts": {
       "tests": [
         {
-          "id": "7",
+          "id": "10",
           "name": "List Admin Users should list all admin users"
         }
       ],
-      "source": "import { ListService } from '@/app/modules/admin/services/list.service'\r\nimport { InMemoryUsersRepository } from 'tests/unit/in-memory-repository/in-memory-users-repository'\r\n\r\nlet usersRepository: InMemoryUsersRepository\r\nlet sut: ListService\r\n\r\ndescribe('List Admin Users', () => {\r\n\tbeforeEach(() => {\r\n\t\tusersRepository = new InMemoryUsersRepository()\r\n\t\tsut = new ListService(usersRepository)\r\n\r\n\t\tusersRepository.users.push({\r\n\t\t\tid: '123',\r\n\t\t\tname: 'Admin',\r\n\t\t\temail: 'admin@admin.com',\r\n\t\t\tpassword: '123456',\r\n\t\t\trole: 'ADMIN',\r\n\t\t\tcreatedAt: new Date(),\r\n\t\t\tmustChangePassword: false\r\n\t\t})\r\n\t})\r\n\r\n\tit('should list all admin users', async () => {\r\n\t\tconst users = await sut.execute()\r\n\r\n\t\texpect(users).toHaveLength(1)\r\n\t\texpect(users[0].email).toBe('admin@admin.com')\r\n\t})\r\n})\r\n"
+      "source": "import { Role } from '@/app/modules/admin/schemas/roles'\r\nimport { ListService } from '@/app/modules/admin/services/list.service'\r\nimport { InMemoryUsersRepository } from 'tests/unit/in-memory-repository/in-memory-users-repository'\r\n\r\nlet usersRepository: InMemoryUsersRepository\r\nlet sut: ListService\r\n\r\ndescribe('List Admin Users', () => {\r\n\tbeforeEach(() => {\r\n\t\tusersRepository = new InMemoryUsersRepository()\r\n\t\tsut = new ListService(usersRepository)\r\n\r\n\t\tusersRepository.users.push({\r\n\t\t\tid: '123',\r\n\t\t\tname: 'Admin',\r\n\t\t\temail: 'admin@admin.com',\r\n\t\t\tpassword: '123456',\r\n\t\t\trole: Role.ADMIN,\r\n\t\t\tcreatedAt: new Date(),\r\n\t\t\tmustChangePassword: false\r\n\t\t})\r\n\t})\r\n\r\n\tit('should list all admin users', async () => {\r\n\t\tconst users = await sut.execute()\r\n\r\n\t\texpect(users).toHaveLength(1)\r\n\t\texpect(users[0].email).toBe('admin@admin.com')\r\n\t})\r\n})\r\n"
     }
   },
   "projectRoot": "D:\\back-end\\help-desk",

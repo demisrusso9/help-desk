@@ -1,4 +1,5 @@
 import { UserNotFoundError } from '@/app/modules/admin/errors/user-not-found.error'
+import { Role } from '@/app/modules/admin/schemas/roles'
 import { UpdateAdminDTO } from '@/app/modules/admin/schemas/update.schema'
 import { UpdateService } from '@/app/modules/admin/services/update.service'
 import { InMemoryUsersRepository } from 'tests/unit/in-memory-repository/in-memory-users-repository'
@@ -21,7 +22,7 @@ describe('Update Admin User', () => {
 			name: 'Admin',
 			email: 'admin@admin.com',
 			password: '123456',
-			role: 'ADMIN',
+			role: Role.ADMIN,
 			createdAt: new Date(),
 			mustChangePassword: false
 		})
