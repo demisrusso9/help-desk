@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common'
 import { randomUUID } from 'crypto'
 
-import { AdminDTO, AdminResponseDTO } from '@/app/modules/admin/schemas/admin.schema'
+import { AdminCredentialsDTO, AdminDTO, AdminResponseDTO } from '@/app/modules/admin/schemas/admin.schema'
 import { RegisterAdminDTO } from '@/app/modules/admin/schemas/register.schema'
 import { UpdateAdminDTO } from '@/app/modules/admin/schemas/update.schema'
 import { UsersRepository } from '@/database/repository/contracts/users.repository'
@@ -40,6 +40,13 @@ export class InMemoryUsersRepository implements UsersRepository {
 		return this.toResponseDTO(user)
 	}
 
+	async findCredentialsByEmail(email: string): Promise<AdminCredentialsDTO | null> {
+		const user = this.users.find((u) => u.email === email)
+		if (!user) return null
+
+		return { id: user.id, password: user.password }
+	}
+
 	async findAll(): Promise<AdminResponseDTO[] | []> {
 		if (this.users.length === 0) return []
 
@@ -74,6 +81,6 @@ export class InMemoryUsersRepository implements UsersRepository {
 	private toResponseDTO(user: AdminDTO): AdminResponseDTO {
 		// remove password like Prisma `omit`
 		const { password, ...rest } = user
-		return rest as AdminResponseDTO
+		return rest
 	}
 }

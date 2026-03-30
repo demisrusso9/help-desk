@@ -6,13 +6,16 @@ import { PrismaUsersRepository } from '@/database/repository/prisma/prisma-users
 import { Module } from '@nestjs/common'
 import { DeleteByIdController } from './controllers/delete-by-id.controller'
 import { ListController } from './controllers/list.controller'
+import { SignInController } from './controllers/sign-in.controller'
 import { UpdateController } from './controllers/update.controller'
 import { DeleteByIdService } from './services/delete-by-id.service'
 import { ListService } from './services/list.service'
+import { SignInService } from './services/sign-in.service'
 import { UpdateService } from './services/update.service'
 
 @Module({
 	controllers: [
+		SignInController,
 		RegisterController,
 		ListController,
 		UpdateController,
@@ -20,6 +23,7 @@ import { UpdateService } from './services/update.service'
 	],
 	providers: [
 		PrismaService,
+		SignInService,
 		RegisterService,
 		ListService,
 		UpdateService,

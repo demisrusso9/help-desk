@@ -4,6 +4,7 @@ import { envsSchema } from '@/config/env'
 import { DatabaseModule } from '@/database/database.module'
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
+import { AuthModule } from './app/auth/auth.module'
 
 @Module({
 	imports: [
@@ -13,9 +14,8 @@ import { ConfigModule } from '@nestjs/config'
 		}),
 		AdminModule,
 		DatabaseModule,
-		HealthCheckModule
-	],
-	controllers: [],
-	providers: []
+		HealthCheckModule,
+		AuthModule
+	]
 })
 export class AppModule {}

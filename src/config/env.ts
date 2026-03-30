@@ -4,7 +4,9 @@ import z from 'zod'
 export const envsSchema = z.object({
 	DATABASE_URL: z.string(),
 	PORT: z.coerce.number().default(3333),
-	HOST: z.string()
+	HOST: z.string(),
+	JWT_SECRET: z.string(),
+	JWT_EXPIRES_IN: z.string()
 })
 
 const { data, error } = envsSchema.safeParse(process.env)

@@ -1,7 +1,7 @@
 import { UpdateAdminDTO } from '@/app/modules/admin/schemas/update.schema'
 import { PrismaService } from '@/database/prisma.service'
 import { Injectable } from '@nestjs/common'
-import { AdminResponseDTO } from '../../../app/modules/admin/schemas/admin.schema'
+import { AdminCredentialsDTO, AdminResponseDTO } from '../../../app/modules/admin/schemas/admin.schema'
 import { RegisterAdminDTO } from '../../../app/modules/admin/schemas/register.schema'
 import { UsersRepository } from '../contracts/users.repository'
 
@@ -39,6 +39,15 @@ export class PrismaUsersRepository implements UsersRepository {
 		})
 
 		return user as AdminResponseDTO
+	}
+
+	async findCredentialsByEmail(email: string): Promise<AdminCredentialsDTO | null> {
+		const user = await this.prisma.user.findUnique({
+			where: { email },
+			select: { id: true, password: true }
+		})
+
+		return user
 	}
 
 	async findAll(): Promise<AdminResponseDTO[] | []> {
