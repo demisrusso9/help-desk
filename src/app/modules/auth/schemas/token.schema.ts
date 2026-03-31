@@ -1,5 +1,5 @@
 import z from 'zod'
-import { Role } from './roles'
+import { Role } from '../../../shared/enum/roles'
 
 export const tokenSchema = z.object({
 	sub: z.uuid(),

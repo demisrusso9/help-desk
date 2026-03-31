@@ -1,7 +1,7 @@
-import { UserNotFoundError } from '@/app/modules/admin/errors/user-not-found.error'
-import { Role } from '@/app/modules/admin/schemas/roles'
-import { UpdateAdminDTO } from '@/app/modules/admin/schemas/update.schema'
+import { UserNotFoundError } from '@/app/modules/admin/services/errors/user-not-found.error'
 import { UpdateService } from '@/app/modules/admin/services/update.service'
+import { UpdateAdminDTO } from '@/app/modules/technician/schemas/update.schema'
+import { Role } from '@/app/shared/enum/roles'
 import { InMemoryUsersRepository } from 'tests/unit/in-memory-repository/in-memory-users-repository'
 
 let usersRepository: InMemoryUsersRepository

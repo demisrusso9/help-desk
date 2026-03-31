@@ -8,6 +8,16 @@ datasource db {
   provider = "postgresql"
 }
 
+enum WeekDay {
+  MONDAY
+  TUESDAY
+  WEDNESDAY
+  THURSDAY
+  FRIDAY
+  SATURDAY
+  SUNDAY
+}
+
 enum Role {
   ADMIN
   TECHNICIAN
@@ -30,11 +40,25 @@ model User {
   mustChangePassword Boolean   @default(false)
   createdAt          DateTime  @default(now()) @map("created_at")
   updatedAt          DateTime? @map("updated_at")
+  availabilities     TechnicianAvailability[]
 
   clientTickets     Ticket[] @relation("ClientTickets")
   technicianTickets Ticket[] @relation("TechnicianTickets")
 
   @@map("users")
+}
+
+model TechnicianAvailability {
+  id           String   @id @default(uuid())
+  technicianId String
+  weekDay      WeekDay
+  startTime    String
+  endTime      String
+
+  technician   User     @relation(fields: [technicianId], references: [id])
+
+  @@index([technicianId])
+  @@map("technician_availabilities")
 }
 
 model Service {

@@ -1,7 +1,7 @@
+import { userSchema } from '@/app/shared/schema/user.schema'
 import { z } from 'zod'
-import { adminSchema } from './admin.schema'
 
-export const signInUserSchema = adminSchema.pick({
+export const signInUserSchema = userSchema.pick({
 	email: true,
 	password: true
 })

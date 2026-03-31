@@ -1,64 +1,71 @@
-import { UpdateAdminDTO } from '@/app/modules/admin/schemas/update.schema'
+import { UpdateAdminDTO } from '@/app/modules/technician/schemas/update.schema'
+import { CreateTechnicianDTO } from '@/app/shared/schema/create-user.schema'
+import { UserCredentialsDTO, UserResponseDTO } from '@/app/shared/schema/user.schema'
 import { PrismaService } from '@/database/prisma.service'
 import { Injectable } from '@nestjs/common'
-import {
-	AdminCredentialsDTO,
-	AdminResponseDTO
-} from '../../../app/modules/admin/schemas/admin.schema'
-import { RegisterAdminDTO } from '../../../app/modules/admin/schemas/register.schema'
 import { UsersRepository } from '../contracts/users.repository'
 
 @Injectable()
 export class PrismaUsersRepository implements UsersRepository {
 	constructor(private prisma: PrismaService) {}
 
-	async create(user: RegisterAdminDTO): Promise<AdminResponseDTO> {
+	async create(
+		user: CreateTechnicianDTO & { mustChangePassword: boolean }
+	): Promise<UserResponseDTO> {
 		const createdUser = await this.prisma.user.create({
 			data: {
 				name: user.name,
 				email: user.email,
 				password: user.password,
-				role: user.role
+				role: user.role,
+				mustChangePassword: user.mustChangePassword,
+				availabilities: {
+					create: user.availabilities.map((availability) => ({
+						weekDay: availability.weekDay,
+						startTime: availability.startTime,
+						endTime: availability.endTime
+					}))
+				}
 			},
 			omit: { password: true }
 		})
 
-		return createdUser as AdminResponseDTO
+		return createdUser as UserResponseDTO
 	}
 
-	async findById(id: string): Promise<AdminResponseDTO | null> {
+	async findById(id: string): Promise<UserResponseDTO | null> {
 		const user = await this.prisma.user.findUnique({
 			where: { id },
 			omit: { password: true }
 		})
 
-		return user as AdminResponseDTO
+		return user as UserResponseDTO
 	}
 
-	async findByEmail(email: string): Promise<AdminResponseDTO | null> {
+	async findByEmail(email: string): Promise<UserResponseDTO | null> {
 		const user = await this.prisma.user.findUnique({
 			where: { email },
 			omit: { password: true }
 		})
 
-		return user as AdminResponseDTO
+		return user as UserResponseDTO
 	}
 
-	async findCredentialsByEmail(email: string): Promise<AdminCredentialsDTO | null> {
+	async findCredentialsByEmail(email: string): Promise<UserCredentialsDTO | null> {
 		const user = await this.prisma.user.findUnique({
 			where: { email },
 			select: { id: true, password: true, role: true }
 		})
 
-		return user as AdminCredentialsDTO
+		return user as UserCredentialsDTO
 	}
 
-	async findAll(): Promise<AdminResponseDTO[] | []> {
+	async findAll(): Promise<UserResponseDTO[] | []> {
 		const users = await this.prisma.user.findMany({
 			omit: { password: true }
 		})
 
-		return users as AdminResponseDTO[]
+		return users as UserResponseDTO[]
 	}
 
 	async deleteById(id: string): Promise<void> {

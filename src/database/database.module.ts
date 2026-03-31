@@ -1,3 +1,4 @@
+import { SeedService } from '@/config/seed.service'
 import { PrismaService } from '@/database/prisma.service'
 import { Module } from '@nestjs/common'
 import { UsersRepository } from './repository/contracts/users.repository'
@@ -6,6 +7,7 @@ import { PrismaUsersRepository } from './repository/prisma/prisma-users.reposito
 @Module({
 	providers: [
 		PrismaService,
+		SeedService,
 		{
 			provide: UsersRepository,
 			useClass: PrismaUsersRepository

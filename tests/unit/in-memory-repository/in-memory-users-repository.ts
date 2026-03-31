@@ -1,14 +1,14 @@
 import { Injectable } from '@nestjs/common'
 import { randomUUID } from 'crypto'
 
+import { RegisterAdminDTO } from '@/app/modules/admin/schemas/register.schema'
 import {
 	AdminCredentialsDTO,
 	AdminDTO,
 	AdminResponseDTO
-} from '@/app/modules/admin/schemas/admin.schema'
-import { RegisterAdminDTO } from '@/app/modules/admin/schemas/register.schema'
-import { Role } from '@/app/modules/admin/schemas/roles'
-import { UpdateAdminDTO } from '@/app/modules/admin/schemas/update.schema'
+} from '@/app/modules/technician/schemas/admin.schema'
+import { UpdateAdminDTO } from '@/app/modules/technician/schemas/update.schema'
+import { Role } from '@/app/shared/enum/roles'
 import { UsersRepository } from '@/database/repository/contracts/users.repository'
 
 @Injectable()

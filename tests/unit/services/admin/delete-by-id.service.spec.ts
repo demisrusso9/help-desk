@@ -1,6 +1,6 @@
-import { UserNotFoundError } from '@/app/modules/admin/errors/user-not-found.error'
-import { Role } from '@/app/modules/admin/schemas/roles'
 import { DeleteByIdService } from '@/app/modules/admin/services/delete-by-id.service'
+import { UserNotFoundError } from '@/app/modules/admin/services/errors/user-not-found.error'
+import { Role } from '@/app/shared/enum/roles'
 import { InMemoryUsersRepository } from 'tests/unit/in-memory-repository/in-memory-users-repository'
 
 let usersRepository: InMemoryUsersRepository

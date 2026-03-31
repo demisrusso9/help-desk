@@ -1,0 +1,36 @@
+import {
+	CreateTechnicianDTO,
+	createTechnicianSchema
+} from '@/app/shared/schema/create-user.schema'
+import { RegisterService } from '@/app/shared/services/register.service'
+import { ZodValidationPipe } from '@/pipes/zod-validation.pipe'
+import {
+	Body,
+	ConflictException,
+	Controller,
+	Post,
+	UseGuards,
+	UsePipes
+} from '@nestjs/common'
+import { Roles } from '../../auth/decorator/roles.decorator'
+import { JwtAuthGuard } from '../../auth/jwt/jwt-auth.guard'
+import { UserAlreadyExistsError } from '../errors/user-already-exists.error'
+
+@Controller('/admin/technicians')
+export class RegisterController {
+	constructor(private readonly registerService: RegisterService) {}
+
+	@Post('/register')
+	@UsePipes(new ZodValidationPipe(createTechnicianSchema))
+	@UseGuards(JwtAuthGuard)
+	@Roles('ADMIN')
+	async handle(@Body() body: CreateTechnicianDTO) {
+		try {
+			return await this.registerService.execute(body)
+		} catch (error) {
+			if (error instanceof UserAlreadyExistsError) {
+				throw new ConflictException(error.message)
+			}
+		}
+	}
+}

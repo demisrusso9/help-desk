@@ -2,7 +2,7 @@ import { ExecutionContext, Injectable, UnauthorizedException } from '@nestjs/com
 import { Reflector } from '@nestjs/core'
 import { JwtService } from '@nestjs/jwt'
 import { AuthGuard } from '@nestjs/passport'
-import { ROLES_KEY } from './roles.decorator'
+import { ROLES_KEY } from '../decorator/roles.decorator'
 
 @Injectable()
 export class JwtAuthGuard extends AuthGuard('jwt') {

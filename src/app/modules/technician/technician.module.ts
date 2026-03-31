@@ -1,21 +1,19 @@
-import { RegisterController } from '@/app/modules/admin/controllers/register.controller'
-import { RegisterService } from '@/app/modules/admin/services/register.service'
+import { RegisterService } from '@/app/shared/services/register.service'
 import { PrismaService } from '@/database/prisma.service'
 import { UsersRepository } from '@/database/repository/contracts/users.repository'
 import { PrismaUsersRepository } from '@/database/repository/prisma/prisma-users.repository'
 import { Module } from '@nestjs/common'
+
 import { DeleteByIdController } from './controllers/delete-by-id.controller'
 import { ListController } from './controllers/list.controller'
-import { SignInController } from './controllers/sign-in.controller'
+import { RegisterController } from './controllers/register.controller'
 import { UpdateController } from './controllers/update.controller'
 import { DeleteByIdService } from './services/delete-by-id.service'
 import { ListService } from './services/list.service'
-import { SignInService } from './services/sign-in.service'
 import { UpdateService } from './services/update.service'
 
 @Module({
 	controllers: [
-		SignInController,
 		RegisterController,
 		ListController,
 		UpdateController,
@@ -23,7 +21,6 @@ import { UpdateService } from './services/update.service'
 	],
 	providers: [
 		PrismaService,
-		SignInService,
 		RegisterService,
 		ListService,
 		UpdateService,
@@ -34,4 +31,4 @@ import { UpdateService } from './services/update.service'
 		}
 	]
 })
-export class AdminModule {}
+export class TechnicianModule {}

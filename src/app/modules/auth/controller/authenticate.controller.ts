@@ -1,18 +1,19 @@
 import { ZodValidationPipe } from '@/pipes/zod-validation.pipe'
 import { Body, Controller, Post, UnauthorizedException, UsePipes } from '@nestjs/common'
-import { InvalidCredentialsError } from '../errors/invalid-credentials.error'
+
+import { InvalidCredentialsError } from '../../technician/errors/invalid-credentials.error'
 import { SignInUserDTO, signInUserSchema } from '../schemas/sign-in-user.schema'
-import { SignInService } from '../services/sign-in.service'
+import { AuthenticateService } from '../service/authenticate.service'
 
-@Controller('/admin')
-export class SignInController {
-	constructor(private signInService: SignInService) {}
+@Controller('/sign-in')
+export class AuthenticateController {
+	constructor(private authenticateService: AuthenticateService) {}
 
-	@Post('/sign-in')
+	@Post()
 	@UsePipes(new ZodValidationPipe(signInUserSchema))
 	async handle(@Body() body: SignInUserDTO) {
 		try {
-			return await this.signInService.execute(body)
+			return await this.authenticateService.execute(body)
 		} catch (error) {
 			if (error instanceof InvalidCredentialsError) {
 				throw new UnauthorizedException(error.message)

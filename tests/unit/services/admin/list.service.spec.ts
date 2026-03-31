@@ -1,5 +1,5 @@
-import { Role } from '@/app/modules/admin/schemas/roles'
 import { ListService } from '@/app/modules/admin/services/list.service'
+import { Role } from '@/app/shared/enum/roles'
 import { InMemoryUsersRepository } from 'tests/unit/in-memory-repository/in-memory-users-repository'
 
 let usersRepository: InMemoryUsersRepository

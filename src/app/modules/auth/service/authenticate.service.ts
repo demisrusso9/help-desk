@@ -4,11 +4,11 @@ import { Injectable } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { JwtService } from '@nestjs/jwt'
 import { compare } from 'bcryptjs'
-import { InvalidCredentialsError } from '../errors/invalid-credentials.error'
+import { InvalidCredentialsError } from '../../technician/errors/invalid-credentials.error'
 import { SignInUserDTO } from '../schemas/sign-in-user.schema'
 
 @Injectable()
-export class SignInService {
+export class AuthenticateService {
 	constructor(
 		private configService: ConfigService<Envs, true>,
 		private userRepository: UsersRepository,

@@ -6,7 +6,9 @@ export const envsSchema = z.object({
 	PORT: z.coerce.number().default(3333),
 	HOST: z.string(),
 	JWT_SECRET: z.string(),
-	JWT_EXPIRES_IN: z.string()
+	JWT_EXPIRES_IN: z.string(),
+	ADMIN_EMAIL: z.email(),
+	ADMIN_PASSWORD: z.string()
 })
 
 const { data, error } = envsSchema.safeParse(process.env)

@@ -1,4 +1,5 @@
-import { JwtAuthGuard } from '@/app/auth/jwt-auth.guard'
+import { Roles } from '@/app/modules/auth/decorator/roles.decorator'
+import { JwtAuthGuard } from '@/app/modules/auth/jwt/jwt-auth.guard'
 import { ZodValidationPipe } from '@/pipes/zod-validation.pipe'
 import {
 	Body,
@@ -12,13 +13,14 @@ import { UserNotFoundError } from '../errors/user-not-found.error'
 import { UpdateAdminDTO, updateAdminSchema } from '../schemas/update.schema'
 import { UpdateService } from '../services/update.service'
 
-@Controller('/admin')
+@Controller('/admin/technicians')
 export class UpdateController {
 	constructor(private readonly updateService: UpdateService) {}
 
 	@Put('/update')
 	@UseGuards(JwtAuthGuard)
 	@UsePipes(new ZodValidationPipe(updateAdminSchema))
+	@Roles('ADMIN')
 	async handle(@Body() body: UpdateAdminDTO) {
 		try {
 			return await this.updateService.execute(body)
