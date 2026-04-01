@@ -5,6 +5,7 @@ import { DatabaseModule } from '@/database/database.module'
 import { Module } from '@nestjs/common'
 import { ConfigModule } from '@nestjs/config'
 import { AuthModule } from './app/modules/auth/auth.module'
+import { TechServicesModule } from './app/modules/tech-services/tech-services.module'
 import { TechnicianModule } from './app/modules/technician/technician.module'
 
 @Module({
@@ -16,7 +17,8 @@ import { TechnicianModule } from './app/modules/technician/technician.module'
 		TechnicianModule,
 		DatabaseModule,
 		HealthCheckModule,
-		AuthModule
+		AuthModule,
+		TechServicesModule
 	]
 })
 export class AppModule {}
