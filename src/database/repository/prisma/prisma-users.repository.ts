@@ -3,6 +3,7 @@ import { CreateTechnicianDTO } from '@/app/shared/schema/create-user.schema'
 import { UserCredentialsDTO, UserResponseDTO } from '@/app/shared/schema/user.schema'
 import { PrismaService } from '@/database/prisma.service'
 import { Injectable } from '@nestjs/common'
+import { Role } from 'prisma/generated/enums'
 import { UsersRepository } from '../contracts/users.repository'
 
 @Injectable()
@@ -62,7 +63,8 @@ export class PrismaUsersRepository implements UsersRepository {
 
 	async findAll(): Promise<UserResponseDTO[] | []> {
 		const users = await this.prisma.user.findMany({
-			omit: { password: true }
+			omit: { password: true },
+			where: { role: Role.TECHNICIAN }
 		})
 
 		return users as UserResponseDTO[]
