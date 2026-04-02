@@ -1,7 +1,7 @@
 import {
 	CreateTechnicianDTO,
 	createTechnicianSchema
-} from '@/app/shared/schema/create-user.schema'
+} from '@/app/shared/schema/create-technician.schema'
 import { RegisterService } from '@/app/shared/services/register.service'
 import { ZodValidationPipe } from '@/pipes/zod-validation.pipe'
 import {

@@ -11,22 +11,24 @@ export const userSchema = z.object({
 	mustChangePassword: z.boolean(),
 	createdAt: z.date(),
 	updatedAt: z.date().nullish(),
-	availabilities: z.array(
-		z.object({
-			id: z.string(),
-			weekDay: z.enum([
-				'MONDAY',
-				'TUESDAY',
-				'WEDNESDAY',
-				'THURSDAY',
-				'FRIDAY',
-				'SATURDAY',
-				'SUNDAY'
-			]),
-			startTime: z.string(),
-			endTime: z.string()
-		})
-	)
+	availabilities: z
+		.array(
+			z.object({
+				id: z.string(),
+				weekDay: z.enum([
+					'MONDAY',
+					'TUESDAY',
+					'WEDNESDAY',
+					'THURSDAY',
+					'FRIDAY',
+					'SATURDAY',
+					'SUNDAY'
+				]),
+				startTime: z.string(),
+				endTime: z.string()
+			})
+		)
+		.optional()
 })
 
 export const userResponseSchema = userSchema.omit({ password: true })

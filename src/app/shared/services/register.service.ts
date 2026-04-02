@@ -4,7 +4,7 @@ import { hash } from 'bcryptjs'
 import { randomUUID } from 'node:crypto'
 import z from 'zod'
 import { UsersRepository } from '../../../database/repository/contracts/users.repository'
-import { CreateTechnicianDTO } from '../schema/create-user.schema'
+import { CreateTechnicianDTO } from '../schema/create-technician.schema'
 
 type WeekDay =
 	| 'MONDAY'
@@ -24,13 +24,6 @@ const weekDayEnum = z.enum([
 	'SATURDAY',
 	'SUNDAY'
 ])
-
-interface Availability {
-	id?: string
-	weekDay: WeekDay
-	startTime: string
-	endTime: string
-}
 
 @Injectable()
 export class RegisterService {
@@ -57,6 +50,6 @@ export class RegisterService {
 			}))
 		}
 
-		await this.userRepository.create(createUserPayload)
+		await this.userRepository.createTechnician(createUserPayload)
 	}
 }

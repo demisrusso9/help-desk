@@ -1,5 +1,6 @@
 import { UpdateAdminDTO } from '@/app/modules/technician/schemas/update.schema'
-import { CreateTechnicianDTO } from '@/app/shared/schema/create-user.schema'
+import { CreateClientDTO } from '@/app/shared/schema/create-client.schema'
+import { CreateTechnicianDTO } from '@/app/shared/schema/create-technician.schema'
 import { UserCredentialsDTO, UserResponseDTO } from '@/app/shared/schema/user.schema'
 import { PrismaService } from '@/database/prisma.service'
 import { Injectable } from '@nestjs/common'
@@ -10,7 +11,21 @@ import { UsersRepository } from '../contracts/users.repository'
 export class PrismaUsersRepository implements UsersRepository {
 	constructor(private prisma: PrismaService) {}
 
-	async create(
+	async createClient(user: CreateClientDTO): Promise<UserResponseDTO> {
+		const createdUser = await this.prisma.user.create({
+			data: {
+				name: user.name,
+				email: user.email,
+				password: user.password,
+				role: user.role
+			},
+			omit: { password: true }
+		})
+
+		return createdUser as UserResponseDTO
+	}
+
+	async createTechnician(
 		user: CreateTechnicianDTO & { mustChangePassword: boolean }
 	): Promise<UserResponseDTO> {
 		const createdUser = await this.prisma.user.create({
