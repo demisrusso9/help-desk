@@ -5,7 +5,7 @@ import {
 import { UpdateServiceDTO } from '@/app/modules/tech-services/schemas/update-service'
 import { PrismaService } from '@/database/prisma.service'
 import { Injectable } from '@nestjs/common'
-import { ServicesRepository } from '../contracts/services.repository'
+import { ServicesRepository } from './contracts/services.repository'
 
 @Injectable()
 export class PrismaServicesRepository implements ServicesRepository {

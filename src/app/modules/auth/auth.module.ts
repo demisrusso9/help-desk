@@ -1,7 +1,5 @@
 import { Envs } from '@/config/env'
 import { DatabaseModule } from '@/database/database.module'
-import { UsersRepository } from '@/database/repository/contracts/users.repository'
-import { PrismaUsersRepository } from '@/database/repository/prisma/prisma-users.repository'
 import { Module } from '@nestjs/common'
 import { ConfigService } from '@nestjs/config'
 import { JwtModule } from '@nestjs/jwt'
@@ -29,14 +27,7 @@ import { AuthenticateService } from './service/authenticate.service'
 		DatabaseModule
 	],
 	controllers: [AuthenticateController],
-	providers: [
-		JwtStrategy,
-		AuthenticateService,
-		{
-			provide: UsersRepository,
-			useClass: PrismaUsersRepository
-		}
-	],
+	providers: [JwtStrategy, AuthenticateService],
 	exports: [JwtModule, JwtStrategy, AuthenticateService]
 })
 export class AuthModule {}

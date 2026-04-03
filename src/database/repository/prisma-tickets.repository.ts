@@ -3,7 +3,7 @@ import { PrismaCreateTicketDTO } from '@/app/modules/ticket/schemas/ticket.schem
 import { TicketStatus } from '@/app/shared/enum/ticket-status'
 import { PrismaService } from '@/database/prisma.service'
 import { Injectable } from '@nestjs/common'
-import { TicketsRepository } from '../contracts/tickets.repository'
+import { TicketsRepository } from './contracts/tickets.repository'
 
 export interface ServiceParam {
 	id: string

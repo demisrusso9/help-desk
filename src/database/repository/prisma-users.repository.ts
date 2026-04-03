@@ -5,7 +5,7 @@ import { UserCredentialsDTO, UserResponseDTO } from '@/app/shared/schema/user.sc
 import { PrismaService } from '@/database/prisma.service'
 import { Injectable } from '@nestjs/common'
 import { Role } from 'prisma/generated/enums'
-import { UsersRepository } from '../contracts/users.repository'
+import { UsersRepository } from './contracts/users.repository'
 
 @Injectable()
 export class PrismaUsersRepository implements UsersRepository {
