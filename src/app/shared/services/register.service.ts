@@ -6,15 +6,6 @@ import z from 'zod'
 import { UsersRepository } from '../../../database/repository/contracts/users.repository'
 import { CreateTechnicianDTO } from '../schema/create-technician.schema'
 
-type WeekDay =
-	| 'MONDAY'
-	| 'TUESDAY'
-	| 'WEDNESDAY'
-	| 'THURSDAY'
-	| 'FRIDAY'
-	| 'SATURDAY'
-	| 'SUNDAY'
-
 const weekDayEnum = z.enum([
 	'MONDAY',
 	'TUESDAY',
