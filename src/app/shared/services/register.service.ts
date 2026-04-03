@@ -1,4 +1,4 @@
-import { UserAlreadyExistsError } from '@/app/modules/technician/errors/user-already-exists.error'
+import { UserAlreadyExistsError } from '@/app/shared/errors/user-already-exists.error'
 import { Injectable } from '@nestjs/common'
 import { hash } from 'bcryptjs'
 import { randomUUID } from 'node:crypto'

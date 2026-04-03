@@ -8,10 +8,10 @@ import {
 	UseGuards,
 	UsePipes
 } from '@nestjs/common'
+import { ServiceNotFoundError } from '../../../shared/errors/service-not-found.error'
 import { Roles } from '../../auth/decorator/roles.decorator'
 import { JwtAuthGuard } from '../../auth/jwt/jwt-auth.guard'
 import { UpdateServiceDTO, updateServiceSchema } from '../schemas/update-service'
-import { ServiceNotFoundError } from '../services/errors/service-not-found.error'
 import { UpdateTechService } from '../services/update.services'
 
 @Controller('/admin/services')

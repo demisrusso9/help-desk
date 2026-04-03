@@ -4,7 +4,7 @@ import {
 } from '@/app/shared/schema/create-client.schema'
 import { ZodValidationPipe } from '@/pipes/zod-validation.pipe'
 import { Body, ConflictException, Controller, Post, UsePipes } from '@nestjs/common'
-import { UserAlreadyExistsError } from '../../technician/errors/user-already-exists.error'
+import { UserAlreadyExistsError } from '../../../shared/errors/user-already-exists.error'
 import { CreateClientService } from '../services/create.service'
 
 @Controller('/client')

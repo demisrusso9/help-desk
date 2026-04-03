@@ -9,7 +9,7 @@ import {
 	UseGuards,
 	UsePipes
 } from '@nestjs/common'
-import { UserNotFoundError } from '../errors/user-not-found.error'
+import { UserNotFoundError } from '../../../shared/errors/user-not-found.error'
 import { UpdateAdminDTO, updateAdminSchema } from '../schemas/update.schema'
 import { UpdateService } from '../services/update.service'
 

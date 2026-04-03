@@ -1,7 +1,7 @@
 import { ServicesRepository } from '@/database/repository/contracts/services.repository'
 import { Injectable } from '@nestjs/common'
+import { ServiceNotFoundError } from '../../../shared/errors/service-not-found.error'
 import { UpdateServiceDTO } from '../schemas/update-service'
-import { ServiceNotFoundError } from './errors/service-not-found.error'
 
 @Injectable()
 export class UpdateTechService {

@@ -1,10 +1,10 @@
 import { ZodValidationPipe } from '@/pipes/zod-validation.pipe'
 import { Body, Controller, NotFoundException, Post, UseGuards } from '@nestjs/common'
+import { ServiceNotFoundError } from '../../../shared/errors/service-not-found.error'
 import { CurrentUser } from '../../auth/decorator/current-user.decorator'
 import { Roles } from '../../auth/decorator/roles.decorator'
 import { JwtAuthGuard } from '../../auth/jwt/jwt-auth.guard'
 import { UserPayload } from '../../auth/schemas/token.schema'
-import { ServiceNotFoundError } from '../../tech-services/services/errors/service-not-found.error'
 import { CreateTicketDTO, createTicketSchema } from '../schemas/ticket.schema'
 import { TicketService } from '../services/ticket.service'
 

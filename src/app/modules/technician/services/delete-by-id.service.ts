@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common'
 import { UsersRepository } from '../../../../database/repository/contracts/users.repository'
-import { UserNotFoundError } from '../errors/user-not-found.error'
+import { UserNotFoundError } from '../../../shared/errors/user-not-found.error'
 
 @Injectable()
 export class DeleteByIdService {

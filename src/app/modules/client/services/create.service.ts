@@ -1,4 +1,4 @@
-import { UserAlreadyExistsError } from '@/app/modules/technician/errors/user-already-exists.error'
+import { UserAlreadyExistsError } from '@/app/shared/errors/user-already-exists.error'
 import { CreateClientDTO } from '@/app/shared/schema/create-client.schema'
 import { UsersRepository } from '@/database/repository/contracts/users.repository'
 import { Injectable } from '@nestjs/common'

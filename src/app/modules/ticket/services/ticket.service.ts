@@ -1,6 +1,6 @@
 import { TicketsRepository } from '@/database/repository/contracts/tickets.repository'
 import { Injectable } from '@nestjs/common'
-import { ServiceNotFoundError } from '../../tech-services/services/errors/service-not-found.error'
+import { ServiceNotFoundError } from '../../../shared/errors/service-not-found.error'
 import { CreateTicketDTO } from '../schemas/ticket.schema'
 
 @Injectable()

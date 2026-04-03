@@ -10,7 +10,7 @@ import {
 	UsePipes
 } from '@nestjs/common'
 
-import { UserNotFoundError } from '../errors/user-not-found.error'
+import { UserNotFoundError } from '../../../shared/errors/user-not-found.error'
 import { ParamIdDTO, paramIdSchema } from '../schemas/param-id.schema'
 import { DeleteByIdService } from '../services/delete-by-id.service'
 

@@ -1,7 +1,7 @@
 import { ZodValidationPipe } from '@/pipes/zod-validation.pipe'
 import { Body, Controller, Post, UnauthorizedException, UsePipes } from '@nestjs/common'
 
-import { InvalidCredentialsError } from '../../technician/errors/invalid-credentials.error'
+import { InvalidCredentialsError } from '../../../shared/errors/invalid-credentials.error'
 import { SignInUserDTO, signInUserSchema } from '../schemas/sign-in-user.schema'
 import { AuthenticateService } from '../service/authenticate.service'
 
