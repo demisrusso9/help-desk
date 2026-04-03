@@ -1,4 +1,7 @@
-import { CreateServiceDTO } from '@/app/modules/tech-services/schemas/create-service'
+import {
+	CreateServiceDTO,
+	ResponseServiceDTO
+} from '@/app/modules/tech-services/schemas/create-service'
 import { UpdateServiceDTO } from '@/app/modules/tech-services/schemas/update-service'
 import { PrismaService } from '@/database/prisma.service'
 import { Injectable } from '@nestjs/common'
@@ -20,7 +23,7 @@ export class PrismaServicesRepository implements ServicesRepository {
 		return await this.prisma.service.findMany()
 	}
 
-	async update(id: string, service: UpdateServiceDTO): Promise<UpdateServiceDTO> {
+	async update(id: string, service: UpdateServiceDTO): Promise<ResponseServiceDTO> {
 		return await this.prisma.service.update({
 			where: { id },
 			data: {

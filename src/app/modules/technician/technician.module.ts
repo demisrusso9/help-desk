@@ -1,9 +1,7 @@
 import { RegisterService } from '@/app/shared/services/register.service'
-import { PrismaService } from '@/database/prisma.service'
-import { UsersRepository } from '@/database/repository/contracts/users.repository'
-import { PrismaUsersRepository } from '@/database/repository/prisma/prisma-users.repository'
 import { Module } from '@nestjs/common'
 
+import { DatabaseModule } from '@/database/database.module'
 import { DeleteByIdController } from './controllers/delete-by-id.controller'
 import { ListController } from './controllers/list.controller'
 import { RegisterController } from './controllers/register.controller'
@@ -13,22 +11,13 @@ import { ListService } from './services/list.service'
 import { UpdateService } from './services/update.service'
 
 @Module({
+	imports: [DatabaseModule],
 	controllers: [
 		RegisterController,
 		ListController,
 		UpdateController,
 		DeleteByIdController
 	],
-	providers: [
-		PrismaService,
-		RegisterService,
-		ListService,
-		UpdateService,
-		DeleteByIdService,
-		{
-			provide: UsersRepository,
-			useClass: PrismaUsersRepository
-		}
-	]
+	providers: [RegisterService, ListService, UpdateService, DeleteByIdService]
 })
 export class TechnicianModule {}

@@ -8,6 +8,7 @@ import { AuthModule } from './app/modules/auth/auth.module'
 import { ClientModule } from './app/modules/client/client.module'
 import { TechServicesModule } from './app/modules/tech-services/tech-services.module'
 import { TechnicianModule } from './app/modules/technician/technician.module'
+import { TicketModule } from './app/modules/ticket/ticket.module'
 
 @Module({
 	imports: [
@@ -15,12 +16,13 @@ import { TechnicianModule } from './app/modules/technician/technician.module'
 			validate: (envs) => envsSchema.parse(envs),
 			isGlobal: true
 		}),
-		TechnicianModule,
 		DatabaseModule,
 		HealthCheckModule,
 		AuthModule,
+		TechnicianModule,
 		TechServicesModule,
-		ClientModule
+		ClientModule,
+		TicketModule
 	]
 })
 export class AppModule {}
