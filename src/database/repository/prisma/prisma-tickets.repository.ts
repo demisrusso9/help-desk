@@ -1,5 +1,6 @@
 import { ResponseServiceDTO } from '@/app/modules/tech-services/schemas/create-service'
 import { PrismaCreateTicketDTO } from '@/app/modules/ticket/schemas/ticket.schema'
+import { TicketStatus } from '@/app/shared/enum/ticket-status'
 import { PrismaService } from '@/database/prisma.service'
 import { Injectable } from '@nestjs/common'
 import { TicketsRepository } from '../contracts/tickets.repository'
@@ -18,7 +19,7 @@ export class PrismaTicketsRepository implements TicketsRepository {
 			data: {
 				clientId: data.clientId,
 				technicianId: data.technicianId,
-				status: 'OPEN',
+				status: TicketStatus.OPEN,
 				services: {
 					create: services.map((service) => ({
 						service: { connect: { id: service.id } },
