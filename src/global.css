@@ -1,0 +1,46 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+@import "tailwindcss";
+
+@theme {
+  --font-inter: "Inter", sans-serif;
+}
+
+@utility container {
+  @apply p-8 xl:px-6 mx-auto max-w-7xl;
+}
+
+@utility text-heading-hg {
+  @apply text-[40px] leading-[120%] font-bold font-sans;
+}
+
+@utility text-heading-xl {
+  @apply text-[32px] leading-[120%] font-bold font-sans;
+}
+
+@utility text-heading-lg {
+  @apply text-[28px] leading-[120%] font-bold font-sans;
+}
+
+@utility text-heading-md {
+  @apply text-2xl leading-[120%] font-bold font-sans;
+}
+
+@utility text-heading-sm {
+  @apply text-xl leading-[120%] font-bold font-sans;
+}
+
+@utility text-heading-xs {
+  @apply text-base leading-[120%] font-bold font-sans;
+}
+
+@utility text-body-md {
+  @apply text-base leading-[150%] font-normal font-inter;
+}
+
+@utility text-body-sm {
+  @apply text-sm leading-[150%] font-normal font-inter;
+}
+
+@utility text-body-xs {
+  @apply text-xs leading-[150%] font-normal font-inter;
+}
