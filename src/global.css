@@ -1,9 +1,29 @@
 @import url("https://fonts.googleapis.com/css2?family=Inter&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Lato&display=swap");
+
 @import "tailwindcss";
 
 @theme {
   --font-inter: "Inter", sans-serif;
+  --font-lato: "Lato", sans-serif;
+
+  --color-gray-100: #151619;
+  --color-gray-200: #1E2024;
+  --color-gray-300: #535964;
+  --color-gray-400: #858B99;
+  --color-gray-500: #E3E5E8;
+  --color-gray-600: #F9FAFA;
+
+  --color-blue-base: #5165E1;
+  --color-blue-light: #8996EB;
+  --color-blue-dark: #2E3DA3;
+
+  --color-feedback-danger: #D03E3E;
+  --color-feedback-open: #CC3D6A;
+  --color-feedback-progress: #355EC5;
+  --color-feedback-done: #508B26;
 }
+
 
 @utility container {
   @apply p-8 xl:px-6 mx-auto max-w-7xl;
