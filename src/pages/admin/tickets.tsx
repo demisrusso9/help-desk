@@ -56,96 +56,88 @@ export function Tickets() {
 	]
 
 	return (
-		<div className="flex w-full bg-gray-100">
-			<div className="mt-0 w-full rounded-t-3xl bg-gray-600 p-6 pt-7 sm:mt-3 sm:rounded-none sm:rounded-tl-3xl sm:px-6 sm:pt-14.5 md:px-8 lg:px-12">
-				<h1 className="text-blue-dark font-lato text-xl font-bold sm:text-2xl">
-					Chamados
-				</h1>
+		<>
+			<h1 className="text-blue-dark font-lato text-xl font-bold sm:text-2xl">Chamados</h1>
 
-				<div className="mt-4 overflow-hidden rounded-[10px] border border-gray-500 sm:mt-6">
-					<table className="w-full">
-						<thead>
-							<tr className="border border-gray-500">
-								<th className="p-3 text-center text-sm font-normal text-gray-400">
-									Atualizado em
-								</th>
+			<div className="mt-4 overflow-hidden rounded-[10px] border border-gray-500 sm:mt-6">
+				<table className="w-full">
+					<thead>
+						<tr className="border border-gray-500">
+							<th className="p-3 text-center text-sm font-normal text-gray-400">
+								Atualizado em
+							</th>
 
-								<th className="hidden p-3 text-start text-sm font-normal text-gray-400 md:table-cell">
-									Id
-								</th>
+							<th className="hidden p-3 text-start text-sm font-normal text-gray-400 md:table-cell">
+								Id
+							</th>
 
-								<th className="p-3 text-start text-sm font-normal text-gray-400">
-									Titulo e Serviço
-								</th>
+							<th className="p-3 text-start text-sm font-normal text-gray-400">
+								Titulo e Serviço
+							</th>
 
-								<th className="hidden p-3 text-start text-sm font-normal text-gray-400 sm:table-cell">
-									Valor Total
-								</th>
+							<th className="hidden p-3 text-start text-sm font-normal text-gray-400 sm:table-cell">
+								Valor Total
+							</th>
 
-								<th className="hidden p-3 text-start text-sm font-normal text-gray-400 sm:table-cell">
-									Cliente
-								</th>
+							<th className="hidden p-3 text-start text-sm font-normal text-gray-400 sm:table-cell">
+								Cliente
+							</th>
 
-								<th className="hidden p-3 text-start text-sm font-normal text-gray-400 sm:table-cell">
-									Técnico
-								</th>
+							<th className="hidden p-3 text-start text-sm font-normal text-gray-400 sm:table-cell">
+								Técnico
+							</th>
 
-								<th className="p-3 text-start text-sm font-normal text-gray-400">
-									Status
-								</th>
+							<th className="p-3 text-start text-sm font-normal text-gray-400">Status</th>
 
-								<th></th>
+							<th></th>
+						</tr>
+					</thead>
+
+					<tbody>
+						{datarow.map((data, index) => (
+							<tr className="border border-gray-500" key={index}>
+								<td className="font-lato p-3 text-center text-xs text-gray-200">
+									{data.updatedAt}
+								</td>
+
+								<td className="font-lato hidden p-3 text-xs font-bold text-gray-200 md:table-cell">
+									{data.id}
+								</td>
+
+								<td className="flex flex-col p-3">
+									<strong className="font-lato text-sm font-bold text-gray-200">
+										{data.title}
+									</strong>
+
+									<span className="font-lato text-xs text-gray-200">{data.service}</span>
+								</td>
+
+								<td className="font-lato hidden p-3 text-sm text-gray-200 sm:table-cell">
+									{data.price}
+								</td>
+
+								<td className="font-lato hidden p-3 text-sm text-gray-200 sm:table-cell">
+									{data.client}
+								</td>
+
+								<td className="font-lato hidden p-3 text-sm text-gray-200 sm:table-cell">
+									{data.technician}
+								</td>
+
+								<td className="font-lato p-3 text-sm text-gray-200">
+									<Status text={data.status} />
+								</td>
+
+								<td className="cursor-pointer pr-4">
+									<div className="flex items-center justify-center rounded-md bg-gray-500 p-2">
+										<PenLine className="text-gray-200" width={14} height={14} />
+									</div>
+								</td>
 							</tr>
-						</thead>
-
-						<tbody>
-							{datarow.map((data, index) => (
-								<tr className="border border-gray-500" key={index}>
-									<td className="font-lato p-3 text-center text-xs text-gray-200">
-										{data.updatedAt}
-									</td>
-
-									<td className="font-lato hidden p-3 text-xs font-bold text-gray-200 md:table-cell">
-										{data.id}
-									</td>
-
-									<td className="flex flex-col p-3">
-										<strong className="font-lato text-sm font-bold text-gray-200">
-											{data.title}
-										</strong>
-
-										<span className="font-lato text-xs text-gray-200">
-											{data.service}
-										</span>
-									</td>
-
-									<td className="font-lato hidden p-3 text-sm text-gray-200 sm:table-cell">
-										{data.price}
-									</td>
-
-									<td className="font-lato hidden p-3 text-sm text-gray-200 sm:table-cell">
-										{data.client}
-									</td>
-
-									<td className="font-lato hidden p-3 text-sm text-gray-200 sm:table-cell">
-										{data.technician}
-									</td>
-
-									<td className="font-lato p-3 text-sm text-gray-200">
-										<Status text={data.status} />
-									</td>
-
-									<td className="cursor-pointer pr-4">
-										<div className="flex items-center justify-center rounded-md bg-gray-500 p-2">
-											<PenLine className="text-gray-200" width={14} height={14} />
-										</div>
-									</td>
-								</tr>
-							))}
-						</tbody>
-					</table>
-				</div>
+						))}
+					</tbody>
+				</table>
 			</div>
-		</div>
+		</>
 	)
 }
