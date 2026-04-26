@@ -7,16 +7,17 @@ import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
 import z from 'zod'
 
-const userFormSchema = z.object({
+const createUserFormSchema = z.object({
+	name: z.string(),
 	email: z.email(),
 	password: z.string()
 })
 
-type UserForm = z.infer<typeof userFormSchema>
+type UserForm = z.infer<typeof createUserFormSchema>
 
-export function SignIn() {
+export function SignUp() {
 	const { register, handleSubmit } = useForm({
-		resolver: zodResolver(userFormSchema)
+		resolver: zodResolver(createUserFormSchema)
 	})
 
 	function onSubmit(data: UserForm) {
@@ -27,11 +28,15 @@ export function SignIn() {
 		<>
 			<Header />
 
-			<Card
-				title="Acesse o portal"
-				description="Entre usando seu e-mail e senha cadastrados"
-			>
+			<Card title="Crie sua conta" description="Informe seu nome, e-mail e senha">
 				<form className="mt-10 flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
+					<InputField
+						id="name"
+						title="nome"
+						placeholder="Digite o nome completo"
+						{...register('name')}
+					/>
+
 					<InputField
 						id="email"
 						title="e-mail"
@@ -46,15 +51,19 @@ export function SignIn() {
 						{...register('password')}
 					/>
 
+					<span className="font-lato -mt-2 text-xs text-gray-400">
+						Mínimo de 6 dígitos
+					</span>
+
 					<Button title="Entrar" variant="primary" />
 				</form>
 			</Card>
 
 			<CardAccount
-				title="Ainda não tem uma conta?"
-				description="Cadastre agora mesmo"
-				buttonText="Criar conta"
-				link="/sign-up"
+				title="Já uma conta?"
+				description="Entre agora mesmo"
+				buttonText="Acessar conta"
+				link="/sign-in"
 			/>
 		</>
 	)

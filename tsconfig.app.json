@@ -24,9 +24,6 @@
     "erasableSyntaxOnly": true,
     "noFallthroughCasesInSwitch": true,
     "paths": {
-      "@/*": [
-        "./src/*"
-      ],
       "@components/*": [
         "./src/components/*"
       ],
@@ -38,6 +35,9 @@
       ],
       "@hooks/*": [
         "./src/hooks/*"
+      ],
+      "@layouts/*": [
+        "./src/layouts/*"
       ],
       "@api/*": [
         "./src/api/*"
