@@ -3,7 +3,7 @@ import { Outlet } from 'react-router'
 
 export function AdminLayout() {
 	return (
-		<div className="flex min-h-screen">
+		<div className="flex h-full min-h-screen w-full flex-col sm:flex-row">
 			<Sidebar />
 
 			<Outlet />
