@@ -15,9 +15,11 @@ export function CardAccount({ title, description, buttonText, link }: CardAccoun
 
 			<p className="font-lato text-xs text-gray-300">{description}</p>
 
-			<NavLink to={link}>
-				<Button title={buttonText} variant="secondary" />
-			</NavLink>
+			<div className="mt-10">
+				<NavLink to={link}>
+					<Button title={buttonText} variant="secondary" />
+				</NavLink>
+			</div>
 		</section>
 	)
 }

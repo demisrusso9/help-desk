@@ -46,7 +46,9 @@ export function SignIn() {
 						{...register('password')}
 					/>
 
-					<Button title="Entrar" variant="primary" />
+					<div className="mt-10">
+						<Button title="Entrar" variant="primary" />
+					</div>
 				</form>
 			</Card>
 

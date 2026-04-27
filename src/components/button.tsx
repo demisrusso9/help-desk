@@ -14,7 +14,7 @@ export function Button({ title, variant, Icon }: ButtonProps) {
 
 	return (
 		<button
-			className={`${style} font-lato mt-10 flex w-full cursor-pointer items-center justify-center gap-2 rounded-md p-4 text-sm`}
+			className={`${style} font-lato flex w-full cursor-pointer items-center justify-center gap-2 rounded-md p-4 text-sm`}
 		>
 			{Icon && <Icon className="h-5 w-5 text-gray-300" />}
 			{title}

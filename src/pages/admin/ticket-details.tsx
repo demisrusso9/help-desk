@@ -7,7 +7,7 @@ export function TicketDetails() {
 	const navigate = useNavigate()
 
 	return (
-		<div>
+		<>
 			<div className="flex flex-col md:flex-row md:items-center md:justify-between">
 				<div className="flex w-full flex-col">
 					<button
@@ -116,6 +116,6 @@ export function TicketDetails() {
 					</div>
 				</section>
 			</div>
-		</div>
+		</>
 	)
 }
