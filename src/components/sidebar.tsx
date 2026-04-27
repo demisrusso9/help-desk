@@ -4,8 +4,8 @@ import { BriefcaseBusiness, ClipboardList, Menu, Users, Wrench } from 'lucide-re
 export function Sidebar() {
 	return (
 		<div className="flex w-full justify-between bg-gray-100 sm:max-w-50 sm:flex-col">
-			<header className="flex items-start justify-between gap-3 border-b border-gray-200 px-5 py-6 sm:mx-auto sm:items-center">
-				<div className="flex h-full items-center justify-center sm:hidden">
+			<header className="flex items-center justify-center gap-3 border-b border-gray-200 px-5 py-6 sm:mx-auto">
+				<div className="flex items-center sm:hidden">
 					<Menu className="text-gray-600" width={20} height={20} />
 				</div>
 
@@ -17,14 +17,14 @@ export function Sidebar() {
 				</div>
 			</header>
 
-			<section className="hidden p-5 sm:flex sm:flex-col">
+			<section className="hidden p-5 sm:flex sm:flex-1 sm:grow sm:flex-col">
 				<MenuLink text="Chamados" Icon={ClipboardList} link="/admin/tickets" />
 				<MenuLink text="Técnicos" Icon={Users} link="/admin/technicians" />
 				<MenuLink text="Clientes" Icon={BriefcaseBusiness} link="/admin/clients" />
 				<MenuLink text="Serviços" Icon={Wrench} link="/admin/services" />
 			</section>
 
-			<footer className="flex items-start gap-3 border-t border-gray-200 px-5 py-6 sm:mt-auto sm:items-center">
+			<footer className="flex items-center gap-3 border-t border-gray-200 px-5 py-6 sm:mt-auto sm:items-center">
 				<div className="bg-blue-dark flex h-8 w-8 items-center justify-center rounded-full">
 					<p className="font-lato text-sm text-gray-600 uppercase">DR</p>
 				</div>
