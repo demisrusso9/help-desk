@@ -3,6 +3,7 @@ import { AuthLayout } from '@layouts/auth-layout'
 import { Clients } from '@pages/admin/clients'
 import { Services } from '@pages/admin/services'
 import { Technicians } from '@pages/admin/technicians'
+import { TicketDetails } from '@pages/admin/ticket-details'
 import { Tickets } from '@pages/admin/tickets'
 import { SignIn } from '@pages/sign-in'
 import { SignUp } from '@pages/sign-up'
@@ -14,6 +15,7 @@ export function AppRoutes() {
 			<Routes>
 				<Route element={<AdminLayout />} path="/admin">
 					<Route path="tickets" element={<Tickets />} />
+					<Route path="tickets/details/:id" element={<TicketDetails />} />
 					<Route path="technicians" element={<Technicians />} />
 					<Route path="clients" element={<Clients />} />
 					<Route path="services" element={<Services />} />

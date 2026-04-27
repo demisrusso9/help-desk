@@ -1,5 +1,6 @@
 import { Status } from '@components/status'
 import { PenLine } from 'lucide-react'
+import { NavLink } from 'react-router'
 
 export function Tickets() {
 	const datarow = [
@@ -129,9 +130,11 @@ export function Tickets() {
 								</td>
 
 								<td className="cursor-pointer pr-4">
-									<div className="flex items-center justify-center rounded-md bg-gray-500 p-2">
-										<PenLine className="text-gray-200" width={14} height={14} />
-									</div>
+									<NavLink to={`/admin/tickets/details/${data.id}`}>
+										<div className="flex items-center justify-center rounded-md bg-gray-500 p-2">
+											<PenLine className="text-gray-200" width={14} height={14} />
+										</div>
+									</NavLink>
 								</td>
 							</tr>
 						))}
