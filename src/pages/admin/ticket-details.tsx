@@ -23,7 +23,7 @@ export function TicketDetails() {
 					</h1>
 				</div>
 
-				<div className="flex w-full gap-2">
+				<div className="mt-4 flex w-full gap-2 sm:mt-0">
 					<Button variant="secondary" title="Em atendimento" Icon={Clock2} />
 					<Button variant="secondary" title="Encerrado" Icon={CircleCheckBig} />
 				</div>
