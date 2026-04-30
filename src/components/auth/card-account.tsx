@@ -1,4 +1,3 @@
-import { Button } from '@components/button'
 import { NavLink } from 'react-router'
 
 interface CardAccountProps {
@@ -17,7 +16,9 @@ export function CardAccount({ title, description, buttonText, link }: CardAccoun
 
 			<div className="mt-10">
 				<NavLink to={link}>
-					<Button title={buttonText} variant="secondary" />
+					<button className="font-lato flex w-full cursor-pointer items-center justify-center gap-2 rounded-md bg-gray-500 px-4 py-2.5 text-sm font-bold text-gray-200">
+						{buttonText}
+					</button>
 				</NavLink>
 			</div>
 		</section>
