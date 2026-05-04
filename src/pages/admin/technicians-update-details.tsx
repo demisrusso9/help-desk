@@ -1,10 +1,8 @@
 import { InputField } from '@components/auth/input-field'
-import { Button } from '@components/button'
 import { Chips } from '@components/chips'
+import { TopHeader } from '@components/top-header'
 import { zodResolver } from '@hookform/resolvers/zod'
-import { ArrowLeft } from 'lucide-react'
 import { useForm } from 'react-hook-form'
-import { useNavigate } from 'react-router'
 import z from 'zod'
 
 const userFormSchema = z.object({
@@ -13,8 +11,6 @@ const userFormSchema = z.object({
 })
 
 export function TechniciansUpdateDetails() {
-	const navigate = useNavigate()
-
 	const dateHoursMorning = ['08:00', '09:00', '10:00', '11:00', '12:00']
 	const dateHoursAfternoon = ['14:00', '15:00', '16:00', '17:00', '18:00']
 	const dateHoursNight = ['19:00', '20:00', '21:00', '22:00', '23:00']
@@ -27,26 +23,11 @@ export function TechniciansUpdateDetails() {
 
 	return (
 		<>
-			<div className="flex w-full flex-col md:flex-row md:items-center md:justify-between">
-				<div className="flex w-full flex-col">
-					<button
-						className="flex w-full cursor-pointer items-center gap-1"
-						onClick={() => navigate(-1)}
-					>
-						<ArrowLeft width={14} height={14} className="text-gray-300" />
-						<span className="text-xs text-gray-300">Voltar</span>
-					</button>
-
-					<h1 className="text-blue-dark font-lato w-full justify-self-end text-xl font-bold sm:text-2xl">
-						Perfil de técnico
-					</h1>
-				</div>
-
-				<div className="mt-4 flex w-full gap-2 sm:justify-end md:mt-0">
-					<Button variant="secondary" title="Cancelar" />
-					<Button variant="primary" title="Salvar" />
-				</div>
-			</div>
+			<TopHeader
+				title="Perfil de técnico"
+				buttonPrimaryText="Salvar"
+				buttonSecondaryText="Cancelar"
+			/>
 
 			<div className="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-6">
 				<section className="w-full rounded-[10px] border border-gray-500 p-7">

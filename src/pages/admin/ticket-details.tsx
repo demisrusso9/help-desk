@@ -1,33 +1,17 @@
-import { Button } from '@components/button'
 import { Status } from '@components/status'
-import { ArrowLeft, CircleCheckBig, Clock2 } from 'lucide-react'
-import { useNavigate } from 'react-router'
+import { TopHeader } from '@components/top-header'
+import { CircleCheckBig, Clock2 } from 'lucide-react'
 
 export function TicketDetails() {
-	const navigate = useNavigate()
-
 	return (
 		<>
-			<div className="flex w-full flex-col md:flex-row md:items-center md:justify-between">
-				<div className="flex w-full flex-col">
-					<button
-						className="flex w-full cursor-pointer items-center gap-1"
-						onClick={() => navigate(-1)}
-					>
-						<ArrowLeft width={14} height={14} className="text-gray-300" />
-						<span className="text-xs text-gray-300">Voltar</span>
-					</button>
-
-					<h1 className="text-blue-dark font-lato w-full justify-self-end text-xl font-bold sm:text-2xl">
-						Chamado detalhado
-					</h1>
-				</div>
-
-				<div className="mt-4 flex w-full gap-2 sm:justify-end md:mt-0">
-					<Button variant="secondary" title="Em atendimento" Icon={Clock2} />
-					<Button variant="secondary" title="Encerrado" Icon={CircleCheckBig} />
-				</div>
-			</div>
+			<TopHeader
+				title="Chamados"
+				buttonPrimaryText="Em atendimento"
+				buttonSecondaryText="Encerrado"
+				iconPrimary={Clock2}
+				iconSecondary={CircleCheckBig}
+			/>
 
 			<div className="mt-8 grid grid-cols-1 gap-4 lg:grid-cols-2 lg:gap-6">
 				<section className="w-full rounded-[10px] border border-gray-500 p-7">
