@@ -3,14 +3,16 @@ import { Chips } from '@components/chips'
 import { TopHeader } from '@components/top-header'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useForm } from 'react-hook-form'
+import { useParams } from 'react-router'
 import z from 'zod'
 
 const userFormSchema = z.object({
 	name: z.string(),
-	email: z.email()
+	email: z.email(),
+	password: z.string()
 })
 
-export function TechniciansUpdateDetails() {
+export function TechniciansDetails() {
 	const dateHoursMorning = ['08:00', '09:00', '10:00', '11:00', '12:00']
 	const dateHoursAfternoon = ['14:00', '15:00', '16:00', '17:00', '18:00']
 	const dateHoursNight = ['19:00', '20:00', '21:00', '22:00', '23:00']
@@ -20,6 +22,9 @@ export function TechniciansUpdateDetails() {
 	})
 
 	function onSubmit() {}
+
+	const { id } = useParams()
+	const isEdit = Boolean(id)
 
 	return (
 		<>
@@ -57,6 +62,21 @@ export function TechniciansUpdateDetails() {
 							placeholder="exemplo@mail.com"
 							{...register('email')}
 						/>
+
+						{!isEdit && (
+							<>
+								<InputField
+									id="password"
+									text="senha"
+									placeholder="Digite sua senha"
+									{...register('password')}
+								/>
+
+								<span className="font-lato -mt-2 text-xs text-gray-400">
+									Mínimo de 6 dígitos
+								</span>
+							</>
+						)}
 					</form>
 				</section>
 

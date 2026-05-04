@@ -1,5 +1,6 @@
+import { Button } from '@components/button'
 import { Chips } from '@components/chips'
-import { PenLine } from 'lucide-react'
+import { PenLine, Plus } from 'lucide-react'
 import { NavLink } from 'react-router'
 
 export function Technicians() {
@@ -32,7 +33,15 @@ export function Technicians() {
 
 	return (
 		<>
-			<h1 className="text-blue-dark font-lato text-xl font-bold sm:text-2xl">Técnicos</h1>
+			<div className="flex items-center justify-between">
+				<h1 className="text-blue-dark font-lato text-xl font-bold sm:text-2xl">
+					Técnicos
+				</h1>
+
+				<NavLink to="/admin/technicians/register">
+					<Button title="Novo" Icon={Plus} variant="primary" />
+				</NavLink>
+			</div>
 
 			<div className="mt-4 overflow-hidden rounded-[10px] border border-gray-500 sm:mt-6">
 				<table className="w-full">
