@@ -8,7 +8,7 @@ export function TicketDetails() {
 
 	return (
 		<>
-			<div className="flex flex-col md:flex-row md:items-center md:justify-between">
+			<div className="flex w-full flex-col md:flex-row md:items-center md:justify-between">
 				<div className="flex w-full flex-col">
 					<button
 						className="flex w-full cursor-pointer items-center gap-1"
@@ -23,7 +23,7 @@ export function TicketDetails() {
 					</h1>
 				</div>
 
-				<div className="mt-4 flex w-full gap-2 sm:mt-0">
+				<div className="mt-4 flex w-full gap-2 sm:justify-end md:mt-0">
 					<Button variant="secondary" title="Em atendimento" Icon={Clock2} />
 					<Button variant="secondary" title="Encerrado" Icon={CircleCheckBig} />
 				</div>

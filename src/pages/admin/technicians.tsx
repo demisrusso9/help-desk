@@ -65,19 +65,22 @@ export function Technicians() {
 									<div className="flex gap-1">
 										<div className="hidden sm:flex">
 											{data.availabilities
-												.map((chip) => <Chips key={chip} text={chip} />)
+												.map((chip) => <Chips key={chip} text={chip} type="preview" />)
 												.slice(0, 4)}
 										</div>
 
 										<div className="flex sm:hidden">
 											{data.availabilities
-												.map((chip) => <Chips key={chip} text={chip} />)
+												.map((chip) => <Chips key={chip} text={chip} type="preview" />)
 												.slice(0, 1)}
 										</div>
 
 										<div className="hidden sm:flex">
 											{data.availabilities.slice(4).length > 0 && (
-												<Chips text={String('+' + data.availabilities.slice(4).length)} />
+												<Chips
+													text={String('+' + data.availabilities.slice(4).length)}
+													type="preview"
+												/>
 											)}
 										</div>
 
@@ -87,6 +90,7 @@ export function Technicians() {
 													text={
 														'+' + String(Number(data.availabilities.slice(0).length - 1))
 													}
+													type="preview"
 												/>
 											)}
 										</div>
