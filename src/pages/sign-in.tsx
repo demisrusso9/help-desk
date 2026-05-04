@@ -33,14 +33,14 @@ export function SignIn() {
 				<form className="mt-10 flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
 					<InputField
 						id="email"
-						title="e-mail"
+						text="e-mail"
 						placeholder="exemplo@mail.com"
 						{...register('email')}
 					/>
 
 					<InputField
 						id="password"
-						title="senha"
+						text="senha"
 						placeholder="Digite sua senha"
 						{...register('password')}
 					/>

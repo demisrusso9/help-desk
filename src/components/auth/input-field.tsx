@@ -2,18 +2,18 @@ import type { InputHTMLAttributes } from 'react'
 
 interface InputFieldProps extends InputHTMLAttributes<HTMLInputElement> {
 	id: string
-	title: string
+	text: string
 	placeholder: string
 }
 
-export function InputField({ id, title, placeholder, ...rest }: InputFieldProps) {
+export function InputField({ id, text, placeholder, ...rest }: InputFieldProps) {
 	return (
 		<div className="flex flex-col gap-2">
 			<label
 				className="font-lato text-[10px] font-bold text-gray-300 uppercase"
 				htmlFor={id}
 			>
-				{title}
+				{text}
 			</label>
 
 			<input

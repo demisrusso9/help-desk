@@ -31,21 +31,21 @@ export function SignUp() {
 				<form className="mt-10 flex flex-col gap-4" onSubmit={handleSubmit(onSubmit)}>
 					<InputField
 						id="name"
-						title="nome"
+						text="nome"
 						placeholder="Digite o nome completo"
 						{...register('name')}
 					/>
 
 					<InputField
 						id="email"
-						title="e-mail"
+						text="e-mail"
 						placeholder="exemplo@mail.com"
 						{...register('email')}
 					/>
 
 					<InputField
 						id="password"
-						title="senha"
+						text="senha"
 						placeholder="Digite sua senha"
 						{...register('password')}
 					/>
