@@ -1,12 +1,13 @@
 import type { LucideIcon } from 'lucide-react'
+import type { ButtonHTMLAttributes } from 'react'
 
-interface ButtonProps {
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 	title: string
 	variant: 'primary' | 'secondary'
 	Icon?: LucideIcon
 }
 
-export function Button({ title, variant, Icon }: ButtonProps) {
+export function Button({ title, variant, Icon, ...rest }: ButtonProps) {
 	const primary = 'bg-gray-200 text-gray-600'
 	const secondary = 'bg-gray-500 text-gray-200'
 
@@ -15,6 +16,7 @@ export function Button({ title, variant, Icon }: ButtonProps) {
 	return (
 		<button
 			className={`${style} font-lato flex w-full cursor-pointer items-center justify-center gap-2 rounded-md px-4 py-2.5 text-sm font-bold`}
+			{...rest}
 		>
 			{Icon && <Icon className="h-5 w-5 text-gray-300" />}
 			{title}
