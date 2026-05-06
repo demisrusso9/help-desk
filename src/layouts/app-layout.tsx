@@ -1,7 +1,7 @@
 import { Sidebar } from '@components/sidebar'
 import { Outlet } from 'react-router'
 
-export function AdminLayout() {
+export function AppLayout() {
 	return (
 		<div className="flex w-full flex-col sm:h-screen sm:flex-row">
 			<Sidebar />

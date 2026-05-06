@@ -1,4 +1,6 @@
-import { AdminLayout } from '@layouts/admin-layout'
+import { ProtectedRoute } from '@components/protected-route'
+import { Role } from '@interfaces/roles'
+import { AppLayout } from '@layouts/app-layout'
 import { AuthLayout } from '@layouts/auth-layout'
 import { Clients } from '@pages/admin/clients/clients'
 import { Services } from '@pages/admin/services/services'
@@ -14,16 +16,18 @@ export function AppRoutes() {
 	return (
 		<BrowserRouter>
 			<Routes>
-				<Route element={<AdminLayout />} path="/admin">
-					<Route path="tickets" element={<Tickets />} />
-					<Route path="tickets/details/:id" element={<TicketDetails />} />
+				<Route element={<ProtectedRoute allowedRoles={[Role.ADMIN]} />}>
+					<Route element={<AppLayout />} path="/admin">
+						<Route path="tickets" element={<Tickets />} />
+						<Route path="tickets/details/:id" element={<TicketDetails />} />
 
-					<Route path="technicians" element={<Technicians />} />
-					<Route path="technicians/register" element={<TechniciansDetails />} />
-					<Route path="technicians/update/:id" element={<TechniciansDetails />} />
+						<Route path="technicians" element={<Technicians />} />
+						<Route path="technicians/register" element={<TechniciansDetails />} />
+						<Route path="technicians/update/:id" element={<TechniciansDetails />} />
 
-					<Route path="clients" element={<Clients />} />
-					<Route path="services" element={<Services />} />
+						<Route path="clients" element={<Clients />} />
+						<Route path="services" element={<Services />} />
+					</Route>
 				</Route>
 
 				<Route element={<AuthLayout />}>

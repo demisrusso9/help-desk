@@ -3,8 +3,11 @@ import { CardAccount } from '@components/auth/card-account'
 import { Header } from '@components/auth/header'
 import { InputField } from '@components/auth/input-field'
 import { zodResolver } from '@hookform/resolvers/zod'
+import { useEffect } from 'react'
 import { useForm } from 'react-hook-form'
+import { useNavigate } from 'react-router'
 import z from 'zod'
+import { useAuth } from '../context/auth'
 
 const userFormSchema = z.object({
 	email: z.email(),
@@ -14,13 +17,22 @@ const userFormSchema = z.object({
 type UserForm = z.infer<typeof userFormSchema>
 
 export function SignIn() {
+	const navigate = useNavigate()
+	const { handleSignIn, currentUser } = useAuth()
+
 	const { register, handleSubmit } = useForm({
 		resolver: zodResolver(userFormSchema)
 	})
 
-	function onSubmit(data: UserForm) {
-		console.log(data)
+	async function onSubmit({ email, password }: UserForm) {
+		await handleSignIn(email, password)
 	}
+
+	useEffect(() => {
+		if (currentUser?.role === 'ADMIN') {
+			navigate('/admin/tickets')
+		}
+	}, [currentUser, navigate])
 
 	return (
 		<>
