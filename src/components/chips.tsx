@@ -1,6 +1,6 @@
 import { X, type LucideIcon } from 'lucide-react'
 
-type ChipsVariants = 'preview' | 'editable'
+type ChipsVariants = 'preview' | 'editable' | 'active' | 'inactive'
 
 interface ChipsProps {
 	text: string
@@ -23,6 +23,14 @@ export function Chips({ text, type }: ChipsProps) {
 			color: 'font-bold text-gray-600',
 			bgColor: 'bg-blue-base',
 			icon: X
+		},
+		active: {
+			color: 'text-feedback-done',
+			bgColor: 'bg-feedback-done/20'
+		},
+		inactive: {
+			color: 'text-feedback-danger',
+			bgColor: 'bg-feedback-danger/20'
 		}
 	}
 
