@@ -12,8 +12,6 @@ export function ProtectedRoute({
 }: ProtectedRouteProps) {
 	const { currentUser } = useAuth()
 
-	console.log(currentUser)
-
 	if (!currentUser || !allowedRoles.includes(currentUser.role)) {
 		return <Navigate to={redirectTo} replace />
 	}

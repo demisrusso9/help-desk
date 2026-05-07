@@ -53,6 +53,7 @@ export function TechniciansDetails() {
 							id="name"
 							text="nome"
 							placeholder="Digite seu nome"
+							type="text"
 							{...register('name')}
 						/>
 
@@ -60,6 +61,7 @@ export function TechniciansDetails() {
 							id="email"
 							text="e-mail"
 							placeholder="exemplo@mail.com"
+							type="text"
 							{...register('email')}
 						/>
 
@@ -69,6 +71,7 @@ export function TechniciansDetails() {
 									id="password"
 									text="senha"
 									placeholder="Digite sua senha"
+									type="text"
 									{...register('password')}
 								/>
 

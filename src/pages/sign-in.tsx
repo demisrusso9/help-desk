@@ -47,12 +47,14 @@ export function SignIn() {
 						id="email"
 						text="e-mail"
 						placeholder="exemplo@mail.com"
+						type="text"
 						{...register('email')}
 					/>
 
 					<InputField
 						id="password"
 						text="senha"
+						type="text"
 						placeholder="Digite sua senha"
 						{...register('password')}
 					/>

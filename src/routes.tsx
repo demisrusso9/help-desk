@@ -1,3 +1,4 @@
+import { Loading } from '@components/loading'
 import { ProtectedRoute } from '@components/protected-route'
 import { Role } from '@interfaces/roles'
 import { AppLayout } from '@layouts/app-layout'
@@ -10,6 +11,7 @@ import { TicketDetails } from '@pages/admin/tickets/ticket-details'
 import { Tickets } from '@pages/admin/tickets/tickets'
 import { SignIn } from '@pages/sign-in'
 import { SignUp } from '@pages/sign-up'
+import { Suspense } from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router'
 
 export function AppRoutes() {
@@ -26,7 +28,14 @@ export function AppRoutes() {
 						<Route path="technicians/update/:id" element={<TechniciansDetails />} />
 
 						<Route path="clients" element={<Clients />} />
-						<Route path="services" element={<Services />} />
+						<Route
+							path="services"
+							element={
+								<Suspense fallback={<Loading />}>
+									<Services />
+								</Suspense>
+							}
+						/>
 					</Route>
 				</Route>
 

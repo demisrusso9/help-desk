@@ -129,6 +129,7 @@ export function Clients() {
 						id="email"
 						text="e-mail"
 						placeholder="exemplo@mail.com"
+						type="text"
 						{...register('email')}
 					/>
 
@@ -136,6 +137,7 @@ export function Clients() {
 						id="password"
 						text="senha"
 						placeholder="Digite sua senha"
+						type="text"
 						{...register('password')}
 					/>
 

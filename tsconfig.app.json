@@ -48,6 +48,9 @@
       "@interfaces/*": [
         "./src/interfaces/*"
       ],
+      "@services/*": [
+        "./src/services/*"
+      ],
     }
   },
   "include": [

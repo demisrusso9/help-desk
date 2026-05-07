@@ -33,6 +33,7 @@ export function SignUp() {
 						id="name"
 						text="nome"
 						placeholder="Digite o nome completo"
+						type="text"
 						{...register('name')}
 					/>
 
@@ -40,6 +41,7 @@ export function SignUp() {
 						id="email"
 						text="e-mail"
 						placeholder="exemplo@mail.com"
+						type="text"
 						{...register('email')}
 					/>
 
@@ -47,6 +49,7 @@ export function SignUp() {
 						id="password"
 						text="senha"
 						placeholder="Digite sua senha"
+						type="text"
 						{...register('password')}
 					/>
 
